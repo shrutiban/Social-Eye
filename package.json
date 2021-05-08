@@ -1,0 +1,34 @@
+{
+  "name": "ngo-project",
+  "version": "1.0.0",
+  "description": "website for the ngo vidyaniketan",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "mocha --exit",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anaskhan96/ngo-project.git"
+  },
+  "author": "Anas Khan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anaskhan96/ngo-project/issues"
+  },
+  "homepage": "https://github.com/anaskhan96/ngo-project#readme",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.1.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "jwt-simple": "^0.5.5",
+    "mongoose": "^5.3.3",
+    "require-dir": "^1.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "supertest": "^3.3.0"
+  }
+}

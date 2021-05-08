@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NGO Portal</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
+	<link href="styles/index.css" rel="stylesheet">
+</head>
+<body>
+		<div class="header">
+			<div class="sides">
+				<img src="resources/logo.png" id="logo_image">
+				<h2 class="logoText">vidyanikethan</h2>
+				<a href="#about" class="logo1">ABOUT US</a>
+				<a href="#donashun" class="logo2">DONATE</a>
+				<!-- <a href="#volunteer" class="logo3">VOLUNTEER</a> -->
+				<a class="logo3" href="/volunteer_registration">VOLUNTEER NOW</a>
+				<br/>
+
+				<a class="logo5" href="/management_registration">MANAGE NOW</a>
+				<a href="http://localhost:8080/login" class="logo4">LOG IN</a>
+					
+			</div>
+			<div class="sides"> <a href="#" class="menu">-</a></div>
+				<div class="info">
+					<h4><a href="#category"></a></h4>
+				  <h1 class="schoolName"><b>SRI VIDYANIKETHAN SCHOOL</b></h1>
+				  <div class="meta" style="font-size: 1.8em;">
+						Integrated sustainable community development through community participation.
+					</div>
+				</div>
+		</div>
+				
+<div class="slideShowContainer" id="about">
+	<h1 id="slideText"><b>Why empowering children matters?</b></h1>	
+	<div class="mySlides"><img class="slideImage" src="resources/Slide1.png"></div>
+	<div class="mySlides"><img class="slideImage" src="resources/Slide2.png"></div>
+	<div class="mySlides"><img class="slideImage" src="resources/Slide3.png"></div>
+	<div class="mySlides"><img class="slideImage" src="resources/Slide4.png"></div>
+	<div class="mySlides"><img class="slideImage" src="resources/Slide5.png"></div>
+</div>
+<!--</section>-->
+<div id="about_us">
+	<h1 id="about_us_text"><b>About Us</b></h1>
+	<div id="about_us_font">
+		Vidyanikethan is a not-for-profit organization founded in 1988 to improve the lives and livelihoods of people from the vulnerable, marginalized and under-developed sections of the society. Based in Bangalore, (India) Vidyanikethan's special focus is on development of children and women from the low income group families. Its interventions have impacted more than 12000 families. It has initiated about 600 Self-Help Groups in almost 10 divisional areas in two major states in South India - Karnataka and Tamil Nadu.
+	</div>
+	<img src='resources/class5.jpg' style="position: absolute; top: 240vh; left: 55vw; width: 40vw;">
+	</div>
+<div style="display: none">
+	<form method='post' action='https://securegw-stage.paytm.in/theia/processTransaction' name='f1'></form>
+</div>
+
+<div class="donation-container" id="donashun" ng-app="ssbApp" ng-controller="ssbCtrl">
+		<div class="space">
+				<fieldset class="dswitch switch-two">
+				  <legend></legend>
+				  <input type="radio" name="view" id="yes" checked name="showHideExample" ng-model="showHideTest" ng-value="true" />
+				  <label for="yes">Monetary Donation</label>
+				  <input type="radio" name="view" id="no" name="showHideExample" ng-model="showHideTest" ng-value="false"/>
+				  <label for="no"> Non-monetary Donation </label> 
+				  <span class="switch-button"></span>
+				</fieldset>
+			  </div>
+		<div class="donation-meter" name="showHideExample" ng-show="showHideTest">
+				<strong style="margin-left:-2vw;">Monthly Requirements</strong>
+				<strong class="goal" style="margin-left:-2vw;">₹35,000</strong>
+				<span class="glass">
+						<strong id="moneyReceived" class="total" style="bottom: 30%; position: absolute; top:55vh; left: -2.5vw; font-size: 2em;">₹0</strong>
+						<span class="amount" style="height: 30%"></span>
+				</span>
+				<div class="bulb">
+						<span class="red-circle"></span>
+						<span class="filler" id="moneyRatio">
+								<span></span>
+						</span>
+				</div>
+			</div>
+            
+		<div class="donation-box" ng-show="showHideTest">
+			<div class="title">Monetary Donation Information</div>
+			
+			<div class="fields">
+				<input type="text" id="name" placeholder="Name">
+				<input type="text" id="mobile" placeholder="9999999999">
+				<input type="text" id="email" placeholder="Email">
+			</div>
+			
+			<div class="amount">
+				<div class="button" onclick="set_amount(100)" value="100">₹100</div>
+				<div class="button" onclick="set_amount(500)" value="500">₹500</div>
+				<div class="button" onclick="set_amount(1000)" value="1000">₹1000</div>
+				<div class="button">₹<input type="number" class="set-amount" id="donation_amount" placeholder=""></div>
+			</div>
+			
+			<div class="switch">
+	<input type="radio" class="switch-input" name="view" value="One-Time" id="one-time" checked="">
+	<label for="one-time" class="switch-label switch-label-off">One-Time</label>
+	<input type="radio" class="switch-input" name="view" value="Monthly" id="monthly">
+	<label for="monthly" class="switch-label switch-label-on">Sponsor a Child</label>
+	<span class="switch-selection"></span>
+	</div>
+	
+	<div class="checkboxes">
+	<input type="checkbox" id="receipt" class="checkbox" />
+	<label for="receipt">Email Me A Receipt</label>
+	<br />
+	<input type="checkbox" id="anon" class="checkbox" />
+	<label for="anon">Give Anonymously</label>
+	<br />
+	<input type="checkbox" id="list" class="checkbox" />
+	<label for="list">Add Me To Email List</label>
+	</div>
+	
+	<div class="confirm">
+	</div>
+			<div class="donate-button" id="initPayment"><i class="fa fa-credit-card"></i>Donate Now</div>
+	</div>
+
+
+	<div class="donation-box" ng-hide="showHideTest">
+			<div class="title">Non-Monetary Donation Information</div>
+			<div id=nmdonation>
+				<br><h3> We accept non-monetary donations in the form of:</h3>
+				<li>Clothes</li>
+				<li>Grains (rice, wheat, etc.)</li>
+				<li>Food Items</li>
+				<li>Books</li>
+				<li>Stationary</li>
+				<li>Toys</li>
+				<li>Toiletaries</li>
+				<div id="divider"></div>
+				<div id="contact_us">
+						<strong>Location:</strong> <br>
+						Vidyanikethan <br>
+						(Society for Education and Social Development)<br>
+						Jaraganahalli, J P Nagar (Post), <br>
+						Bangalore 560 078<br><br><br>
+						
+						<strong>Call Us On :</strong><br>
+						+080 - 4148 7965<br><br><br>
+						
+						<strong>E-mail Us At:</strong><br>
+						vidyanik@gmail.com
+				</div>
+				<br><br><br><br><br><label>Enter your contact number for a call:</label> <br>
+				<div class="fields">
+					<input type="text" style="font-size: 1.5em; left:-1vw; top: 5vh; position:absolute;" placeholder="9036112332">
+				</div>
+			</div>	
+			
+	<div class="confirm">
+	</div>
+			<div class="donate-button" id="request_call"><i class="fa fa-credit-card"></i>Request a Call</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
