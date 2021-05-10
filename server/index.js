@@ -21,7 +21,7 @@ mongoose.connect("mongodb+srv://shrutibansal:pNMmGTIc4IcFPBwz@cluster0.jcglz.mon
 
 // express setup
 let app = express();
-app.set('port', 8080);
+app.set('port', 5050);
 app.use(express.static(__dirname + '/public')); // css and js
 app.use(cookieParser());
 app.use(express.json());
@@ -39,13 +39,13 @@ app.get('/', (req, res, next) => {
 		console.log(chalk.green('GET ' + chalk.blue('/')));
 		res.render('index.ejs');
 	});
-app.get('/management_registration', (req, res) => {
-		console.log(chalk.green('GET ' + chalk.blue('/management_registration')));
-		// res.clearCookie('ngotok');
-		res.render('management_registration.ejs');
-	});
-// for (let route in routes)
-// 	app.use('/' + route, routes[route]);
+// app.get('/management_registration', (req, res) => {
+// 		console.log(chalk.green('GET ' + chalk.blue('/management_registration')));
+// 		// res.clearCookie('ngotok');
+// 		res.render('management_registration.ejs');
+	// });
+for (let route in routes)
+	app.use('/' + route, routes[route]);
 
 app.get('/logout', (req, res) => {
 	console.log(chalk.green('GET ' + chalk.blue('/logout')));
