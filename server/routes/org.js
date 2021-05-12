@@ -60,6 +60,7 @@ orgRouter.get('/videos', async(req, res) => {
 		let videos = [];
 		for (let i = 0; i < video.length; i++) {
 					videos.push({
+						author: video[i].postedBy["name"],
 						name: video[i].name,
 						link: video[i].link
 					});
@@ -68,18 +69,22 @@ orgRouter.get('/videos', async(req, res) => {
 							success: true,
 							videos: videos
 						});
+						console.log(videos);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
 });
-orgRouter.get('/videos', (req, res) => {
-	console.log(chalk.green('GET ' + chalk.blue('/org/videos')));
+orgRouter.get('/myvideos', (req, res) => {
+	console.log(chalk.green('GET ' + chalk.blue('/org/myvideos')));
 	Videos.find().populate({
 		path: 'postedBy',
 		match: {
 			username: req.user.username
+			
 		}
+		
 	}).exec((err, videos) => {
+		
 		if (err) throw err;
 		if (videos == null) return res.json({
 			success: false
@@ -90,6 +95,7 @@ orgRouter.get('/videos', (req, res) => {
 				name: videos[i].name,
 				link: videos[i].link
 			});
+			
 		}
 		res.json({
 			success: true,

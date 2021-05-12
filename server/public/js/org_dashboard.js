@@ -67,7 +67,42 @@ $(document).ready( function() {
     }
   });
 
-
+  fetch('/org/myvideos').then((result) => result.json()).then((res) => {
+    console.log(res);
+    let videosArticle = document.getElementById('myvideos');
+    if(res.success){
+      let vids = res.videos;
+      console.log('Videos', vids);
+      for(let i = 0; i < vids.length; i++){
+        let div = document.createElement("div");
+        let h3 = document.createElement("h3");
+        h3.innerHTML = vids[i].name + "<span class='entypo-down-open'></span>";
+        div.appendChild(h3);
+        let iframe = document.createElement('iframe');
+        iframe.setAttribute('width', '640');
+        iframe.setAttribute('height', '480');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('src', vids[i].link);
+        div.appendChild(iframe);
+        let a = document.createElement('a');
+        a.setAttribute('href', '/org/myvideo/' + encodeURIComponent(vids[i].link));
+        a.innerHTML = 'Open this video with discussions';
+        div.appendChild(a);
+        let delBtn = document.createElement("button");
+        delBtn.id = "delVideo";
+        delBtn.className = "delbtn";
+        delBtn.innerHTML="DELETE VIDEO";
+        delBtn.addEventListener('click',delete_video,false);
+        div.appendChild(delBtn);
+        videosArticle.appendChild(div);
+      }
+    }
+    else {
+      videosArticle.innerHTML += "<div><h3>No posts to show</h3></div>";
+    }
+  });
 
 let addVideoBtn = document.getElementById('addVideo');
 addVideoBtn.addEventListener('click', submit_video, false);
@@ -76,6 +111,9 @@ let delVideoBtn = document.getElementById('delVideo');
 delVideoBtn.addEventListener('click',delete_video,false);
 
 });
+
+
+
 
 
 // CHANGE THESE FUNCTIONS TO SUIT THE org DASHBOARD 
@@ -150,8 +188,8 @@ function delete_video(e)
 function add_videos() {
   var assignments = document.getElementById("addVideos");
   assignments.style.display = "block";
-  // var myvideos = document.getElementById("myVideos");
-  // myvideos.style.display = "none";
+  var myvideo = document.getElementById("myvideos");
+  myvideo.style.display = "none";
   var vids = document.getElementById("videos");
   vids.style.display = "none";
   var profile = document.getElementById("profile");
@@ -162,8 +200,8 @@ function add_videos() {
 function show_videos() {
   var assignments = document.getElementById("addVideos");
   assignments.style.display = "none";
-  // var myvideos = document.getElementById("myVideos");
-  // myvideos.style.display = "none";
+  var myvideo = document.getElementById("myvideos");
+  myvideo.style.display = "none";
   var vids = document.getElementById("videos");
   vids.style.display = "block";
   var profile = document.getElementById("profile");
@@ -172,10 +210,10 @@ function show_videos() {
   
 }
 function show_myvideos() {
-  var assignments = document.getElementById("assignments");
-  assignments.style.display = "none";
-  var myvideos = document.getElementById("myVideos");
-  myvideos.style.display = "block";
+  // var assignments = document.getElementById("assignments");
+  // assignments.style.display = "none";
+  var myvideo = document.getElementById("myvideos");
+  myvideo.style.display = "block";
 
   var videos = document.getElementById("addVideos");
   videos.style.display = "none";
@@ -187,8 +225,8 @@ function show_myvideos() {
 function show_profile() {
   var assignments = document.getElementById("addVideos");
   assignments.style.display = "none";
-  // var myvideos = document.getElementById("myVideos");
-  // myvideos.style.display = "none";
+  var myvideo = document.getElementById("myvideos");
+  myvideo.style.display = "none";
   var vids = document.getElementById("videos");
   vids.style.display = "none";
   var profile = document.getElementById("profile");
