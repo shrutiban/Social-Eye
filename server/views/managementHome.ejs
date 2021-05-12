@@ -14,7 +14,7 @@
         <nav>
             <ul>
             <li>
-                <a href="javascript:show_students();" data-title="View Students">View Students</a>
+                <a href="javascript:show_persons();" data-title="View Persons">View Persons</a>
             </li>
             <li>
                 <a href="javascript:show_orgs();" data-title="View Orgs">View Orgs</a>
@@ -38,14 +38,14 @@
             <a href="/logout">Logout</a>
         </div>
 
-				<article class="larg" style="display: none;" id="students">
+				<article class="larg" style="display: none;" id="persons">
             <div id="detailsDiv1">
-            <h3>Student Details <span class="entypo-down-open"></span></h3>
+            <h3>Person Details <span class="entypo-down-open"></span></h3>
                 </div>
-                <a href="javascript:add_user();" data-title="Add User">Add Student</a>
+                <a href="javascript:add_user();" data-title="Add User">Add Person</a>
 
 
-                 <div id="div_addstudent" style="display:none">
+                 <div id="div_addperson" style="display:none">
                   Name:<br>
                   <input type="text" name="firstname" id="fn" class="form__group"><br>
                   Email:<br>
@@ -54,7 +54,7 @@
                   <input type="text" name="username" id="un" class="form__group"><br>
                   Password:<br>
                   <input type="password" name="password" id="pw" class="form__group"><br>
-                  <input type="submit" value="Submit" class="btn" onclick="submit_student_add()">
+                  <input type="submit" value="Submit" class="btn" onclick="submit_person_add()">
                 </div>
         </article>
 
@@ -76,11 +76,11 @@
                   <input type="text" name="username" id="t_un" class="form__group"><br>
                   Password:<br>
                   <input type="password" name="password" id="t_pw" class="form__group"><br>
-                  <!-- <input type="select multiple" name="students" id="s_stu"><br> -->
-                  Students:<br>
+                  <!-- <input type="select multiple" name="persons" id="s_stu"><br> -->
+                  Persons:<br>
                 <div class="select_menu">
 
-                  <select multiple id="t_students" class="select_menu">
+                  <select multiple id="t_persons" class="select_menu">
                     <!--
                     <option value="anaskhan96" class="select__group">Anas Khan</option></br>
                     <option value="grassknoted" class="select__group">Akash Nagaraj</option></br>
@@ -110,11 +110,11 @@
                 <input type="text" name="username" id="t_un" class="form__group"><br>
                 Password:<br>
                 <input type="password" name="password" id="t_pw" class="form__group"><br>
-                 <input type="select multiple" name="students" id="s_stu"><br>
-                Students:<br>
+                 <input type="select multiple" name="persons" id="s_stu"><br>
+                Persons:<br>
               <div class="select_menu">
 
-                <select multiple id="t_students" class="select_menu">
+                <select multiple id="t_persons" class="select_menu">
                   
                   <option value="anaskhan96" class="select__group">Anas Khan</option></br>
                   <option value="grassknoted" class="select__group">Akash Nagaraj</option></br>

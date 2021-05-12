@@ -5,7 +5,7 @@ let auth = require('../middleware/auth');
 let orgRouter = express.Router();
 let Org = require('../models/org');
 let Videos = require('../models/videos');
-let Student = require('../models/student');
+let Person = require('../models/person');
 const chalk = require('chalk');
 
 // authentication middleware
@@ -107,14 +107,14 @@ orgRouter.get('/video/:link', (req, res) => {
 	let link = decodeURIComponent(req.params.link);
 	Videos.findOne({
 		link: link
-	}).populate('vidComments.student').exec((err, video) => {
+	}).populate('vidComments.person').exec((err, video) => {
 		if (err) throw err;
 		if (video == null) return res.render('404.ejs');
 		let comments = [];
 		for (let i = 0; i < video.vidComments.length; i++) {
-			if (video.vidComments[i].student) {
+			if (video.vidComments[i].person) {
 				comments.push({
-					username: video.vidComments[i].student.username,
+					username: video.vidComments[i].person.username,
 					text: video.vidComments[i].text
 				});
 			}
@@ -138,7 +138,7 @@ orgRouter.post('/addVideo', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/org/addVideo')));
 	Org.findOne({
 		username: req.user.username
-	}).populate('students').exec((err, org) => {
+	}).populate('persons').exec((err, org) => {
 		if (err) throw err;
 		if (org == null) return res.json({
 			success: false
@@ -155,14 +155,14 @@ orgRouter.post('/addVideo', (req, res) => {
 					success: false
 				});
 			}
-			for (let i = 0; i < org.students.length; i++) {
-				Student.findOneAndUpdate({
-					username: org.students[i].username
+			for (let i = 0; i < org.persons.length; i++) {
+				Person.findOneAndUpdate({
+					username: org.persons[i].username
 				}, {
 					$push: {
 						videos: result
 					}
-				}, (err, updatedStudent) => {
+				}, (err, updatedPerson) => {
 					if (err) throw err;
 				});
 			}
@@ -213,7 +213,7 @@ orgRouter.post('/addVideo', (req, res) => {
 // 		link: link
 // 	}).populate('vidComments.org').exec((err, video) => {
 // 		for (let i = 0; i < video.vidComments.length; i++) {
-// 			if (video.vidComments[i].student && video.vidComments[i].student.username == req.user.username && video.vidComments[i].text == req.body.text) {
+// 			if (video.vidComments[i].person && video.vidComments[i].person.username == req.user.username && video.vidComments[i].text == req.body.text) {
 // 				video.vidComments.splice(i, 1);
 // 				break;
 // 			}

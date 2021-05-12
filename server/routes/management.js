@@ -7,7 +7,7 @@ let Management = require('../models/management');
 let Schedule = require('../models/schedule');
 const chalk = require('chalk');
 let Donations = require('../models/donations');
-let Student = require('../models/student');
+let Person = require('../models/person');
 
 // authentication middleware
 managementRouter.use((req, res, next) => {
@@ -48,7 +48,7 @@ managementRouter.get('/details', (req, res) => {
 });
 
 /*
-	GET /management/users/student, /management/users/org
+	GET /management/users/person, /management/users/org
 	response: json { success (boolean), users { name, email, username } }
 */
 managementRouter.get('/users/:usertype', (req, res) => {
@@ -95,13 +95,13 @@ managementRouter.get('/users/:usertype', (req, res) => {
 // 	});
 // });
 /*
-	POST /management/addUser/student, /management/addUser/org
-	request body: json { name, email, username, password, students {} (for orgs) }
+	POST /management/addUser/person, /management/addUser/org
+	request body: json { name, email, username, password, persons {} (for orgs) }
 	response: json { success (boolean) }
 */
 managementRouter.post('/addUser/:usertype', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/management/addUser')));
-	if (req.params.usertype != "student" && req.params.usertype != "org") return res.json({
+	if (req.params.usertype != "person" && req.params.usertype != "org") return res.json({
 		success: false
 	});
 	let Usertype = require('../models/' + req.params.usertype);
@@ -111,15 +111,15 @@ managementRouter.post('/addUser/:usertype', (req, res) => {
 		username: req.body.username,
 		password: req.body.password
 	});
-	if (req.params.usertype == 'org' && req.body.students) {
-		// req.body.students contain all the usernames
-		Student.find({
+	if (req.params.usertype == 'org' && req.body.persons) {
+		// req.body.persons contain all the usernames
+		Person.find({
 			username: {
-				$in: req.body.students
+				$in: req.body.persons
 			}
-		}, (err, students) => {
+		}, (err, persons) => {
 			if (err) throw err;
-			user.students = students
+			user.persons = persons
 			user.save((err, result) => {
 				if (err) return res.json({
 					success: false,
@@ -146,13 +146,13 @@ managementRouter.post('/addUser/:usertype', (req, res) => {
 });
 
 /*
-	POST /management/deleteUser/student, /management/deleteUser/org
+	POST /management/deleteUser/person, /management/deleteUser/org
 	request body: json { username }
 	response: json { success (boolean) }
 */
 managementRouter.post('/deleteUser/:usertype', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/management/deleteUser')));
-	if (req.params.usertype != "student" && req.params.usertype != "org") return res.json({
+	if (req.params.usertype != "person" && req.params.usertype != "org") return res.json({
 		success: false
 	});
 	let Usertype = require('../models/' + req.params.usertype);

@@ -20,9 +20,9 @@ const videosSchema = mongoose.Schema({
 		ref: 'org'
 	},
 	vidComments: [{
-		student: {
+		person: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'student'
+			ref: 'person'
 		},
 		text: {
 			type: String
@@ -33,7 +33,7 @@ const videosSchema = mongoose.Schema({
 });
 
 videosSchema.post('remove', function(doc) {
-	// remove the video's references from all student documents
+	// remove the video's references from all person documents
 });
 
 module.exports = mongoose.model('videos', videosSchema, 'videos');

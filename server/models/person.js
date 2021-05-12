@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 let auth = require('../middleware/auth');
 
-const orgSchema = mongoose.Schema({
+const personSchema = mongoose.Schema({
 	name: {
 		type: String,
 		required: true
@@ -22,22 +22,18 @@ const orgSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	// persons: [{
-	// 	type: mongoose.Schema.Types.ObjectId,
-	// 	ref: 'person'
-	// }]
+	videos: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'videos'
+	}]
 }, {
 	timestamps: true
 });
 
-orgSchema.pre('save', function(next) {
+personSchema.pre('save', function(next) {
 	let derivedKey = auth.generatePassword(this.password);
 	this.password = derivedKey;
 	next();
 });
 
-orgSchema.post('deleteOne', function(doc) {
-	// need to remove videos posted by the org
-});
-
-module.exports = mongoose.model('org', orgSchema, 'org');
+module.exports = mongoose.model('person', personSchema, 'person');

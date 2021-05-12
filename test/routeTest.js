@@ -29,7 +29,7 @@ describe('Visitor test', () => {
 
 	it('should redirect to login page', (done) => {
 		request(app)
-			.get('/student')
+			.get('/person')
 			.expect('Content-Type', 'text/plain; charset=utf-8')
 			.expect(302)
 			.end((err, res) => {
@@ -39,7 +39,7 @@ describe('Visitor test', () => {
 	});
 });
 
-describe('User (student) session test', () => {
+describe('User (person) session test', () => {
 	let cookies = null;
 
 	before((done) => {
@@ -51,9 +51,9 @@ describe('User (student) session test', () => {
 			.post('/login')
 			.set('Accept', 'application/json')
 			.send({
-				'username': 'teststudent',
+				'username': 'testperson',
 				'password': 'testpassword',
-				'usertype': 'student'
+				'usertype': 'person'
 			})
 			.expect('Content-Type', 'application/json; charset=utf-8')
 			.expect(200)
@@ -65,9 +65,9 @@ describe('User (student) session test', () => {
 			});
 	});
 
-	it('should return student homepage after login', (done) => {
+	it('should return person homepage after login', (done) => {
 		request(app)
-			.get('/student')
+			.get('/person')
 			.set('Cookie', cookies)
 			.expect('Content-Type', 'text/html; charset=utf-8')
 			.expect(200)

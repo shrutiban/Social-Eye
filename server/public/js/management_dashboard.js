@@ -17,8 +17,8 @@ $(document).ready( function() {
     $('.title').children('h2').html(title);
   });
 
-	fetch_students();
-	show_students();
+	fetch_persons();
+	show_persons();
 
 	fetch_orgs();
 
@@ -37,13 +37,13 @@ $(document).ready( function() {
 });
 
 
-function fetch_students() {
-	fetch('/management/users/student').then((result) => result.json()).then((res) => {
+function fetch_persons() {
+	fetch('/management/users/person').then((result) => result.json()).then((res) => {
 	    console.log(res);
 	    if(res.success){
 
 	      let detailsDiv1 = document.getElementById('detailsDiv1');
-	      let selectId = document.getElementById('t_students');
+	      let selectId = document.getElementById('t_persons');
 	      detailsDiv1.innerHTML="";
 	      res['users'].forEach(function(u){
 
@@ -56,11 +56,11 @@ function fetch_students() {
 	        let p = document.createElement('div');
 	        p.innerHTML = "Name:"+u["name"]+"</br>"+"Username:"+u["username"]+"</br>"+"Email:"+u["email"]+"</br>";
 	        var button = document.createElement('button');
-	        var t = document.createTextNode("Remove Student");
+	        var t = document.createTextNode("Remove Person");
 	        button.appendChild(t);
 	        button.setAttribute("style", "background-color: red;border:2px solid black;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;");
 	        button.addEventListener("click",function(){
-	          fetch('/management/deleteUser/student',{
+	          fetch('/management/deleteUser/person',{
 	            method : "POST",
 	            body: JSON.stringify(
 	            {
@@ -73,7 +73,7 @@ function fetch_students() {
 	              detailsDiv1.removeChild(p);
 	            }
 	            });
-	          swal("Deleted!", "The student has been deleted from the database.", "success");
+	          swal("Deleted!", "The person has been deleted from the database.", "success");
 	        });
 	        p.append(button);
 	        detailsDiv1.appendChild(p);
@@ -196,8 +196,8 @@ function fetch_schedules() {
 
 
 function show_posts() {
-	var students = document.getElementById("students");
- 	students.style.display = "block";
+	var persons = document.getElementById("persons");
+ 	persons.style.display = "block";
 	var orgs = document.getElementById("orgs");
 	orgs.style.display = "none";
 	var schedule = document.getElementById("schedule");
@@ -208,9 +208,9 @@ function show_posts() {
 	posts.style.display = "block";
   }
 
-function show_students() {
-  var students = document.getElementById("students");
-  students.style.display = "block";
+function show_persons() {
+  var persons = document.getElementById("persons");
+  persons.style.display = "block";
   var orgs = document.getElementById("orgs");
   orgs.style.display = "none";
   var schedule = document.getElementById("schedule");
@@ -222,8 +222,8 @@ function show_students() {
 }
 
 function show_orgs() {
-  var students = document.getElementById("students");
-  students.style.display = "none";
+  var persons = document.getElementById("persons");
+  persons.style.display = "none";
   var orgs = document.getElementById("orgs");
   orgs.style.display = "block";
   var schedule = document.getElementById("schedule");
@@ -235,8 +235,8 @@ function show_orgs() {
 }
 
 function show_schedule() {
-  var students = document.getElementById("students");
-  students.style.display = "none";
+  var persons = document.getElementById("persons");
+  persons.style.display = "none";
   var orgs = document.getElementById("orgs");
   orgs.style.display = "none";
   var schedule = document.getElementById("schedule");
@@ -247,8 +247,8 @@ function show_schedule() {
   posts.style.display = "block";
 }
 function show_donations() {
-  var students = document.getElementById("students");
-  students.style.display = "none";
+  var persons = document.getElementById("persons");
+  persons.style.display = "none";
   var orgs = document.getElementById("orgs");
   orgs.style.display = "none";
   var schedule = document.getElementById("schedule");
@@ -260,17 +260,17 @@ function show_donations() {
 }
 
 
-function add_user() {		// show add student form
-	studentdiv=document.getElementById("div_addstudent");
-	studentdiv.style.display="block";
-	// alert("potray student add_user");
+function add_user() {		// show add person form
+	persondiv=document.getElementById("div_addperson");
+	persondiv.style.display="block";
+	// alert("potray person add_user");
 }
 
 
-function add_user_post(name_i, email_i, username_i, password_i){			// add student function
+function add_user_post(name_i, email_i, username_i, password_i){			// add person function
     //do same as add_schedule and collect input using form
     console.log(name_i+"___"+email_i+"___"+username_i+"___"+password_i)
-    fetch('/management/addUser/student',{
+    fetch('/management/addUser/person',{
     method : "POST",
     body: JSON.stringify(
     {
@@ -282,16 +282,16 @@ function add_user_post(name_i, email_i, username_i, password_i){			// add studen
     headers: {"Content-Type" : "application/json;charset=utf-8"}
   }).then((result) => result.json()).then((res) => {
     console.log(res);
-    // displayvoid_students();
-    fetch_students();
-    show_students();  // ajax call to reload page not working
+    // displayvoid_persons();
+    fetch_persons();
+    show_persons();  // ajax call to reload page not working
     // window.location="http://localhost:8080/management"
     });
-  swal("Added!", "The student has been added to the database", "success");
+  swal("Added!", "The person has been added to the database", "success");
 }
 
 
-function submit_student_add() {
+function submit_person_add() {
 	firstname=document.getElementById("fn").value;
 	email=document.getElementById("em").value;
 	username=document.getElementById("un").value;
@@ -307,11 +307,11 @@ function add_org(){		// show add org form
     //do same as add_schedule and collect input using form
 	orgdiv=document.getElementById("div_addorg");
 	orgdiv.style.display="block";
-	// alert("potray student add_user");
+	// alert("potray person add_user");
 }
 
 
-function add_org_post(name_i, email_i, username_i, password_i, students_i){			// add org function
+function add_org_post(name_i, email_i, username_i, password_i, persons_i){			// add org function
     //do same as add_schedule and collect input using form
     console.log(name_i+"___"+email_i+"___"+username_i+"___"+password_i)
     fetch('/management/addUser/org',{
@@ -322,12 +322,12 @@ function add_org_post(name_i, email_i, username_i, password_i, students_i){			//
       email : email_i,
       username : username_i,
       password: password_i,
-      students: students_i,
+      persons: persons_i,
     }),
     headers: {"Content-Type" : "application/json;charset=utf-8"}
   }).then((result) => result.json()).then((res) => {
     console.log(res);
-    // displayvoid_students();
+    // displayvoid_persons();
     fetch_orgs();
     show_orgs();  // ajax call to reload page not working
     // window.location="http://localhost:8080/management"
@@ -340,14 +340,14 @@ function submit_org_add() {
 	email=document.getElementById("t_em").value;
 	username=document.getElementById("t_un").value;
 	password=document.getElementById("t_pw").value;
-	studentSelect=document.getElementById("t_students").options;
-	students = [];
-	for(let i = 0; i < studentSelect.length; i++){
-		if(studentSelect[i].selected) students.push(studentSelect[i].value);		
+	personSelect=document.getElementById("t_persons").options;
+	persons = [];
+	for(let i = 0; i < personSelect.length; i++){
+		if(personSelect[i].selected) persons.push(personSelect[i].value);		
 	}
 
-	console.log(students);
-	add_org_post(firstname, email, username, password, students);
+	console.log(persons);
+	add_org_post(firstname, email, username, password, persons);
 	return false;
 
 }
@@ -356,7 +356,7 @@ function add_schedule(){		// show add schedule form
     //do same as add_schedule and collect input using form
 	schedulediv=document.getElementById("div_addschedule");
 	schedulediv.style.display="block";
-	// alert("potray student add_user");
+	// alert("potray person add_user");
 }
 
 

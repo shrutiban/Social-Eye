@@ -469,7 +469,7 @@ $(".bar").click(function() {
 
 	function addComment() {
 		let newComment = document.getElementById("newComment");
-		fetch('/student/addComment/' + link, {
+		fetch('/person/addComment/' + link, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -497,7 +497,7 @@ $(".bar").click(function() {
 
 	function deleteComment(comment) {
 		console.log(comment);
-		fetch('/student/deleteComment/' + link, {
+		fetch('/person/deleteComment/' + link, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
