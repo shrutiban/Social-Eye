@@ -108,8 +108,8 @@ personRouter.get('/videos', async(req, res) => {
 	// 	});
 	// });
 });
-personRouter.get('/videos', (req, res) => {
-	console.log(chalk.green('GET ' + chalk.blue('/person/videos')));
+personRouter.get('/myvideos', (req, res) => {
+	console.log(chalk.green('GET ' + chalk.blue('/person/myvideos')));
 	Videos.find().populate({
 		path: 'postedBy',
 		match: {

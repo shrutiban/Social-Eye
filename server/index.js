@@ -11,7 +11,7 @@ const chalk = require('chalk');
 require('dotenv').config();
 
 // connect to db
-mongoose.connect("mongodb+srv://shrutibansal:pNMmGTIc4IcFPBwz@cluster0.jcglz.mongodb.net/female?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://mongodb:mongodb@cluster0.jo8ol.mongodb.net/testing?retryWrites=true&w=majority",
 {
 	useNewUrlParser: true
 }).then(
@@ -30,6 +30,11 @@ app.use(express.urlencoded({
 }));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
+app.get('/donation', (req, res) => {
+	console.log(chalk.green('GET ' + chalk.blue('/donation')));
+	res.status(200).render('donate.ejs');
+});
 
 app.get('/', (req, res, next) => {
 		if (!req.cookies.ngotok) return next();
@@ -58,5 +63,6 @@ app.use((req, res, next) => {
 	console.log(chalk.yellow('Undefined route: ' + req.method + ' ' + req.originalUrl));
 	res.status(404).render('404.ejs');
 });
+
 
 module.exports = app;

@@ -13,12 +13,12 @@
 <body>
 		<div class="header">
 			<div class="sides">
-				<!-- <img src="resources/logo.png" id="logo_image"> -->
-				<!-- <h2 class="logoText">vidyanikethan</h2> -->
+				<img src="resources/logo.png" id="logo_image">
+				<h2 class="logoText">Social Eye</h2>
 				<a href="#about" class="logo1">ABOUT US</a>
 				<a href="#donashun" class="logo2">DONATE</a>
 				<!-- <a href="#individual" class="logo3">Individual</a> -->
-				<a class="logo3" href="/individual_registration">Individual Registration</a> 
+				<a class="logo3" href="/individual_registration">Person Registration</a> 
 				<a class="logo5" href="/management_registration">MANAGE NOW</a> 
 				<a href="http://localhost:5050/login" class="logo4">LOG IN</a>
 					
@@ -26,7 +26,7 @@
 			<div class="sides"> <a href="#" class="menu">-</a></div>
 				<div class="info">
 					<h4><a href="#category"></a></h4>
-				  <h1 class="schoolName"><b>Social Eye</b></h1>
+				  <h1 class="projectName"><b>Social Eye</b></h1>
 				  <div class="meta" style="font-size: 1.8em;">
 						Integrated sustainable community development through community participation.
 					</div>
@@ -34,21 +34,16 @@
 		</div>
 				
 <div class="slideShowContainer" id="about">
-	<h1 id="slideText"><b>Why Should I Care?</b></h1>	
-	<div class="mySlides"><img class="slideImage" src="resources/Slide1.png"></div>
-	<div class="mySlides"><img class="slideImage" src="resources/Slide2.png"></div>
-	<div class="mySlides"><img class="slideImage" src="resources/Slide3.png"></div>
-	<div class="mySlides"><img class="slideImage" src="resources/Slide4.png"></div>
-	<div class="mySlides"><img class="slideImage" src="resources/Slide5.png"></div>
+	<h1 id="slideText"><b>Contribution You Can Do</b></h1>
+	<div class="mySlides"><img class="slideImage" src="resources/toysD.png"></div>
+	<div class="mySlides"><img class="slideImage" src="resources/clothesD.png"></div>
+	<!-- <div class="mySlides"><img class="slideImage" src="resources/whytodonate.jpg"></div> -->
+	<div class="mySlides"><img class="slideImage" src="resources/foodD.png"></div>
+	<div class="mySlides"><img class="slideImage" src="resources/Donate-Your-Books.png"></div>
+	<!-- <div class="mySlides"><img class="slideImage" src="resources/moneyD.jpg"></div> -->
+	
 </div>
-<!--</section>-->
-<!-- <div id="about_us">
-	<h1 id="about_us_text"><b>About Us</b></h1>
-	<div id="about_us_font">
-		Vidyanikethan is a not-for-profit organization founded in 1988 to improve the lives and livelihoods of people from the vulnerable, marginalized and under-developed sections of the society. Based in Bangalore, (India) Vidyanikethan's special focus is on development of children and women from the low income group families. Its interventions have impacted more than 12000 families. It has initiated about 600 Self-Help Groups in almost 10 divisional areas in two major states in South India - Karnataka and Tamil Nadu.
-	</div>
-	<img src='resources/class5.jpg' style="position: absolute; top: 240vh; left: 55vw; width: 40vw;">
-	</div> -->
+
 <div style="display: none">
 	<form method='post' action='https://securegw-stage.paytm.in/theia/processTransaction' name='f1'></form>
 </div>
@@ -65,20 +60,6 @@
 				</fieldset>
 			  </div>
 
-		<!-- <div class="donation-meter" name="showHideExample" ng-show="showHideTest">
-				<strong style="margin-left:-2vw;">Monthly Requirements</strong>
-				<strong class="goal" style="margin-left:-2vw;">₹35,000</strong>
-				<span class="glass">
-						<strong id="moneyReceived" class="total" style="bottom: 30%; position: absolute; top:55vh; left: -2.5vw; font-size: 2em;">₹0</strong>
-						<span class="amount" style="height: 30%"></span>
-				</span>
-				<div class="bulb">
-						<span class="red-circle"></span>
-						<span class="filler" id="moneyRatio">
-								<span></span>
-						</span>
-				</div>
-			</div> -->
             
 		<div class="donation-box" ng-show="showHideTest">
 			<div class="title">Monetary Donation Information</div>
@@ -104,16 +85,6 @@
 	<span class="switch-selection"></span>
 	</div>
 	
-	<!-- <div class="checkboxes">
-	<input type="checkbox" id="receipt" class="checkbox" />
-	<label for="receipt">Email Me A Receipt</label>
-	<br />
-	<input type="checkbox" id="anon" class="checkbox" />
-	<label for="anon">Give Anonymously</label>
-	<br />
-	<input type="checkbox" id="list" class="checkbox" />
-	<label for="list">Add Me To Email List</label>
-	</div> -->
 	
 	<div class="confirm">
 	</div>
@@ -124,31 +95,30 @@
 	<div class="donation-box" ng-hide="showHideTest">
 			<div class="title">Non-Monetary Donation Information</div>
 			<div id=nmdonation>
-				<br><h3> We accept non-monetary donations in the form of:</h3>
+				<br><h3> You can donate in the form of:</h3>
 				<li>Clothes</li>
-				<li>Grains (rice, wheat, etc.)</li>
 				<li>Food Items</li>
 				<li>Books</li>
 				<li>Stationary</li>
 				<li>Toys</li>
-				<li>Toiletaries</li>
-				<!-- <div id="divider"></div>
+				<!-- <li>Toiletaries</li> -->
+			   <div id="divider"></div>
 				<div id="contact_us">
 						<strong>Location:</strong> <br>
-						Vidyanikethan <br>
-						(Society for Education and Social Development)<br>
-						Jaraganahalli, J P Nagar (Post), <br>
-						Bangalore 560 078<br><br><br>
+						SocialEye <br>
+						(An organisation to bring helper and needy together )<br>
+						Electronic City, Urban Bangalore, <br>
+						Bangalore<br><br><br>
 						
 						<strong>Call Us On :</strong><br>
-						+080 - 4148 7965<br><br><br>
+						1234567890<br><br><br>
 						
 						<strong>E-mail Us At:</strong><br>
-						vidyanik@gmail.com
-				</div> -->
-				<br><br><br><br><br><label>Enter your contact number for a call:</label> <br>
+						socialeye@domain.org
+				</div>
+				<br><br><br><br><br><label>Please Enter your Phone Number:</label> <br>
 				<!-- <div class="fields"> -->
-					<input type="text" style="font-size: 1.5em; left:-1vw; top: 5vh; position:relative;" placeholder="9036112332">
+					<input type="text" style="font-size: 1.5em; left:-0.5vw; top: 5vh; position:relative;" placeholder="1234567890">
 				<!-- </div> -->
 			</div>	
 			

@@ -59,8 +59,11 @@ orgRouter.get('/videos', async(req, res) => {
         const video = await Videos.find();
 		let videos = [];
 		for (let i = 0; i < video.length; i++) {
+
+				let author = video[i].postedBy;
+				// console.log(author);
 					videos.push({
-						author: video[i].postedBy["name"],
+						author: video[i].postedByName,
 						name: video[i].name,
 						link: video[i].link
 					});
@@ -69,39 +72,59 @@ orgRouter.get('/videos', async(req, res) => {
 							success: true,
 							videos: videos
 						});
-						console.log(videos);
+						// console.log(videos);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
 });
-orgRouter.get('/myvideos', (req, res) => {
+
+
+orgRouter.get('/myvideos', async(req, res) => {
 	console.log(chalk.green('GET ' + chalk.blue('/org/myvideos')));
-	Videos.find().populate({
-		path: 'postedBy',
-		match: {
-			username: req.user.username
-			
-		}
+	try {
+        const video = await Videos.find();
+		let videos = [];
+		for (let i = 0; i < video.length; i++) {
+					videos.push({
+						author: video[i].postedBy,
+						name: video[i].name,
+						link: video[i].link
+					});
+				}    
+				res.json({
+							success: true,
+							videos: videos
+						});
+						// console.log(videos);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+	// Videos.find().populate({
 		
-	}).exec((err, videos) => {
-		
-		if (err) throw err;
-		if (videos == null) return res.json({
-			success: false
-		});
-		let vids = [];
-		for (let i = 0; i < videos.length; i++) {
-			vids.push({
-				name: videos[i].name,
-				link: videos[i].link
-			});
+	// 	$match: {
+	// 		name: req.user.name
 			
-		}
-		res.json({
-			success: true,
-			videos: vids
-		});
-	});
+	// 	}
+		
+	// }).exec((err, videos) => {
+		
+	// 	if (err) throw err;
+	// 	if (videos == null) return res.json({
+	// 		success: false
+	// 	});
+	// 	let vids = [];
+	// 	for (let i = 0; i < videos.length; i++) {
+	// 		vids.push({
+	// 			name: videos[i].name,
+	// 			link: videos[i].link
+	// 		});
+			
+	// 	}
+	// 	res.json({
+	// 		success: true,
+	// 		videos: vids
+	// 	});
+	// });
 });
 
 /*
@@ -152,7 +175,8 @@ orgRouter.post('/addVideo', (req, res) => {
 		let video = new Videos({
 			name: req.body.name,
 			link: req.body.link,
-			postedBy: org
+			postedByID: org._id,
+			postedByName: org.name
 		});
 		video.save((err, result) => {
 			if (err) {
@@ -161,17 +185,17 @@ orgRouter.post('/addVideo', (req, res) => {
 					success: false
 				});
 			}
-			for (let i = 0; i < org.persons.length; i++) {
-				Person.findOneAndUpdate({
-					username: org.persons[i].username
-				}, {
-					$push: {
-						videos: result
-					}
-				}, (err, updatedPerson) => {
-					if (err) throw err;
-				});
-			}
+			// for (let i = 0; i < org.persons.length; i++) {
+			// 	Person.findOneAndUpdate({
+			// 		username: org.persons[i].username
+			// 	}, {
+			// 		$push: {
+			// 			videos: result
+			// 		}
+			// 	}, (err, updatedPerson) => {
+			// 		if (err) throw err;
+			// 	});
+			// }
 		});
 		res.json({
 			success: true,

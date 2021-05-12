@@ -35,11 +35,12 @@ $(document).ready( function() {
     let videosArticle = document.getElementById('videos');
     if(res.success){
       let vids = res.videos;
-      console.log('Videos', vids);
+      // console.log('Videos', vids);
       for(let i = 0; i < vids.length; i++){
         let div = document.createElement("div");
         let h3 = document.createElement("h3");
-        h3.innerHTML = vids[i].name + "<span class='entypo-down-open'></span>";
+        h3.innerHTML = "Requested-By : " + vids[i].author + "<br>";
+        h3.innerHTML += vids[i].name + "<span class='entypo-down-open'></span><br>";
         div.appendChild(h3);
         let iframe = document.createElement('iframe');
         iframe.setAttribute('width', '640');
@@ -53,12 +54,12 @@ $(document).ready( function() {
         a.setAttribute('href', '/org/video/' + encodeURIComponent(vids[i].link));
         a.innerHTML = 'Open this video with discussions';
         div.appendChild(a);
-        let delBtn = document.createElement("button");
-        delBtn.id = "delVideo";
-        delBtn.className = "delbtn";
-        delBtn.innerHTML="DELETE VIDEO";
-        delBtn.addEventListener('click',delete_video,false);
-        div.appendChild(delBtn);
+        // let delBtn = document.createElement("button");
+        // delBtn.id = "delVideo";
+        // delBtn.className = "delbtn";
+        // delBtn.innerHTML="DELETE VIDEO";
+        // delBtn.addEventListener('click',delete_video,false);
+        // div.appendChild(delBtn);
         videosArticle.appendChild(div);
       }
     }
@@ -136,7 +137,7 @@ function submit_video()
       console.log(videosArticle);
       let div = document.createElement("div");
       let h3 = document.createElement("h3");
-      h3.innerHTML = res.name+ "<span class='entypo-down-open'></span>";
+      h3.innerHTML = res.author+ "<span class='entypo-down-open'></span>";
       div.appendChild(h3);
       let iframe = document.createElement('iframe');
       iframe.setAttribute('width', '640');
@@ -206,9 +207,8 @@ function show_videos() {
   vids.style.display = "block";
   var profile = document.getElementById("profile");
   profile.style.display = "none";
-
-  
 }
+
 function show_myvideos() {
   // var assignments = document.getElementById("assignments");
   // assignments.style.display = "none";
@@ -222,6 +222,7 @@ function show_myvideos() {
   var profile = document.getElementById("profile");
   profile.style.display = "none";
 }
+
 function show_profile() {
   var assignments = document.getElementById("addVideos");
   assignments.style.display = "none";

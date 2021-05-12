@@ -1,7 +1,7 @@
 'use strict';
 
 let express = require('express');
-const Individual = require('../models/individual');
+const Individual = require('../models/person');
 let individualRegRouter = express.Router();
 let auth = require('../middleware/auth');
 const chalk = require('chalk');
@@ -27,9 +27,6 @@ individualRegRouter.post('/', (req, res) => {
 		email: req.body.email,
 		username: req.body.username,
 		password: req.body.password
-		// classPref: req.body.class,
-		// subjectPref: req.body.subject,
-		// daysPref: req.body.days
 	});
 	individual.save((err, result) => {
 		if (err) {

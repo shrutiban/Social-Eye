@@ -39,7 +39,7 @@ html,body{
 	-webkit-backface-visibility: hidden;
 	-webkit-transform: translateZ(0) scale(1.0, 1.0);
 	transform: translateZ(0);
-  background:#1B2030 url(../resources/socialEye.jpg) top center no-repeat;
+  background:#1B2030 url(../resources/class0.jpg) top center no-repeat;
   background-size:cover;
   background-attachment:fixed;
   animation: grow 25s  linear 10ms infinite;
@@ -49,7 +49,7 @@ html,body{
 .header a{
   color:#eee
 }
-/* .menu{
+.menu{
   display:block;
   width:30px;
   height:30px;
@@ -59,8 +59,8 @@ html,body{
   right:5vw;
   top:5vh;
   text-decoration:none
-} */
-/* .menu:after{
+}
+.menu:after{
   content:"";
   display:block;
   width:20px;
@@ -72,7 +72,7 @@ html,body{
   left:0;
   right:0;
   box-shadow:0 8px, 0 16px
-} */
+}
 .logo1{
   border:2px solid #fff;
   border-radius:3px;
@@ -182,11 +182,7 @@ html,body{
 
 .twtr{
   margin-top:100px
-}
-.btn.twtr:after{
-  content:"\1F426";
-  padding-left:5px
-}
+}.btn.twtr:after{content:"\1F426";padding-left:5px}
 #logo_image {
 	position: absolute;
 	width: 12vw;
@@ -199,7 +195,7 @@ html,body{
   width:50px;
   height:50px;
   border-radius:50%;
-  background-image: url('public/resources/socialEye.jpg') center no-repeat;
+  background-image: url('public/resources/class0.jpg') center no-repeat;
   background-size:cover;
   box-shadow:0 2px 3px rgba(0,0,0,0.3);
   margin-bottom:3px;
@@ -217,7 +213,7 @@ html,body{
 			width: 100%;
 			height: 100%;
 			overflow: hidden;
-      background-color: rgb(232 219 87);
+      background-color: rgb(127, 43, 122);
 		}
 		.slideImage {
 			display: block;
@@ -233,7 +229,7 @@ html,body{
 			top: 103vh;
 			left: 18vw;
 		}
-		.projectName {
+		.schoolName {
 			font-weight: bolder;
 			font-size: 3.5em;
 		}
@@ -245,12 +241,12 @@ html,body{
 		}
 		.donation-container {
 	height: 100%;
-	width: 100%;
+	weight: 100%;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
 	font-size: 12px;
 	text-transform: uppercase;
-	background-color:  #000000b3;
+	background-color:  #53cde2;
 }
 
 .donation-box {
@@ -759,7 +755,7 @@ html,body{
    height: 50vh;
    background-color:#6B6B6B;
    position: absolute;
-   top:-2vh;
+   top:-24vh;
    left: 35vw;
   }
   
@@ -772,8 +768,8 @@ html,body{
   
   #contact_us {
     width: 18vw;
-    left: 38vw;
-    top: -1vh;
+    left: 37vw;
+    top: -20vh;
     position: absolute;
     color: #6B6B6B;
   }

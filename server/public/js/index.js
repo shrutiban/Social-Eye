@@ -46,15 +46,6 @@ var anon = "";
 var list = "";
 var amount = "";
 
-/*
-    if(isiPad || jQuery.browser.mobile){
-        $('#team').hide()
-        $('.team-mobile').show();	
-    }else{
-        $('#team').show()
-        $('.team-mobile').hide();
-    }
-*/
 
 $(".button").click(function() {
     $(".button").removeClass("selected");

@@ -15,9 +15,13 @@ const videosSchema = mongoose.Schema({
 	description: {
 		type: String
 	},
-	postedBy: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'org'
+	postedByID: {
+		type: String,
+		required: true
+	},
+	postedByName: {
+		type: String,
+		required: true
 	},
 	vidComments: [{
 		person: {

@@ -2,14 +2,24 @@
 <html>
 <head>
 	<title>NGO Portal | Donate</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
+	<link href="styles/donation.css" rel="stylesheet">
 </head>
 <body>
-<h3><center>Welcome to Donate!</center></h3>
-Name: <input type="text" name="name" id="name"><br>
-Email: <input type="email" name="email" id="email"><br>
-Mobile: <input type="text" name="mobile" id="mobile"><br>
-Amount: <input type="text" name="amount" id="amount"><br>
-<button id="initPayment">Initiate Payment</button>
+<!-- <div class="donation-container" id="donashun" ng-app="ssbApp" ng-controller="ssbCtrl">
+	<h3><center>Welcome to Donate!</center></h3>
+	Name: <input type="text" name="name" id="name"><br>
+	Email: <input type="email" name="email" id="email"><br>
+	Mobile: <input type="text" name="mobile" id="mobile"><br>
+	Amount: <input type="text" name="amount" id="amount"><br>
+	<button id="initPayment">Initiate Payment</button>
+</div>
+
 <div style="display: none">
 <form method='post' action='https://securegw-stage.paytm.in/theia/processTransaction' name='f1'></form>
 </div>
@@ -46,6 +56,70 @@ Amount: <input type="text" name="amount" id="amount"><br>
 
 	let initPaymentBtn = document.getElementById('initPayment');
 	initPaymentBtn.addEventListener('click', initiatePayment, false);
-</script>
+</script> -->
+<div class="donation-container" id="donashun" ng-app="ssbApp" ng-controller="ssbCtrl">
+	<div class="space">
+			<fieldset class="dswitch switch-two">
+			  <legend></legend>
+			  <input type="radio" name="view" id="yes" checked name="showHideExample" ng-model="showHideTest" ng-value="true" />
+			  <label for="yes">Monetary Donation</label>
+			  <span class="switch-button"></span>
+			</fieldset>
+		  </div>
+
+	<!-- <div class="donation-meter" name="showHideExample" ng-show="showHideTest">
+			<strong style="margin-left:-2vw;">Monthly Requirements</strong>
+			<strong class="goal" style="margin-left:-2vw;">₹35,000</strong>
+			<span class="glass">
+					<strong id="moneyReceived" class="total" style="bottom: 30%; position: absolute; top:55vh; left: -2.5vw; font-size: 2em;">₹0</strong>
+					<span class="amount" style="height: 30%"></span>
+			</span>
+			<div class="bulb">
+					<span class="red-circle"></span>
+					<span class="filler" id="moneyRatio">
+							<span></span>
+					</span>
+			</div>
+		</div> -->
+		
+	<div class="donation-box" ng-show="showHideTest">
+		<div class="title">Monetary Donation Information</div>
+		
+		<div class="fields">
+			<input type="text" id="name" placeholder="Name">
+			<input type="text" id="mobile" placeholder="9999999999">
+			<input type="text" id="email" placeholder="Email">
+		</div>
+		
+		<div class="amount">
+			<div class="button" onclick="set_amount(100)" value="100">₹100</div>
+			<div class="button" onclick="set_amount(500)" value="500">₹500</div>
+			<div class="button" onclick="set_amount(1000)" value="1000">₹1000</div>
+			<div class="button">₹<input type="number" class="set-amount" id="donation_amount" placeholder=""></div>
+		</div>
+		
+		<div class="switch">
+<input type="radio" class="switch-input" name="view" value="One-Time" id="one-time" checked="">
+<label for="one-time" class="switch-label switch-label-off">One-Time</label>
+<input type="radio" class="switch-input" name="view" value="Monthly" id="monthly">
+<label for="monthly" class="switch-label switch-label-on">Sponsor a Oxygen Cylinder</label>
+<span class="switch-selection"></span>
+</div>
+
+<!-- <div class="checkboxes">
+<input type="checkbox" id="receipt" class="checkbox" />
+<label for="receipt">Email Me A Receipt</label>
+<br />
+<input type="checkbox" id="anon" class="checkbox" />
+<label for="anon">Give Anonymously</label>
+<br />
+<input type="checkbox" id="list" class="checkbox" />
+<label for="list">Add Me To Email List</label>
+</div> -->
+
+<div class="confirm">
+</div>
+		<div class="donate-button" id="initPayment"><i class="fa fa-credit-card"></i>Donate Now</div>
+</div>
 </body>
 </html>

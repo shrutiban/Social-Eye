@@ -52,6 +52,12 @@ $(document).ready( function() {
         a.setAttribute('href', '/person/video/' + encodeURIComponent(vids[i].link));
         a.innerHTML = 'Open this video with discussions';
         div.appendChild(a);
+        let donateBtn = document.createElement("button");
+        donateBtn.id = "donateBtn";
+        donateBtn.className = "donateBtn";
+        donateBtn.innerHTML="DONATE";
+        donateBtn.addEventListener('click',click_donate,false);
+        div.appendChild(donateBtn);
         videosArticle.appendChild(div);
       }
     }
@@ -60,7 +66,42 @@ $(document).ready( function() {
     }
   });
 
-
+  fetch('/person/myvideos').then((result) => result.json()).then((res) => {
+    console.log(res);
+    let videosArticle = document.getElementById('myvideos');
+    if(res.success){
+      let vids = res.videos;
+      console.log('Videos', vids);
+      for(let i = 0; i < vids.length; i++){
+        let div = document.createElement("div");
+        let h3 = document.createElement("h3");
+        h3.innerHTML = vids[i].name + "<span class='entypo-down-open'></span>";
+        div.appendChild(h3);
+        let iframe = document.createElement('iframe');
+        iframe.setAttribute('width', '640');
+        iframe.setAttribute('height', '480');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('src', vids[i].link);
+        div.appendChild(iframe);
+        let a = document.createElement('a');
+        a.setAttribute('href', '/person/myvideo/' + encodeURIComponent(vids[i].link));
+        a.innerHTML = 'Open this video with discussions';
+        div.appendChild(a);
+        let delBtn = document.createElement("button");
+        delBtn.id = "delVideo";
+        delBtn.className = "delbtn";
+        delBtn.innerHTML="DELETE VIDEO";
+        delBtn.addEventListener('click',delete_video,false);
+        div.appendChild(delBtn);
+        videosArticle.appendChild(div);
+      }
+    }
+    else {
+      videosArticle.innerHTML += "<div><h3>No posts to show</h3></div>";
+    }
+  });
 
 let addVideoBtn = document.getElementById('addVideo');
 addVideoBtn.addEventListener('click', submit_video, false);
@@ -135,11 +176,15 @@ function delete_video(e)
   });
 }
 
+function click_donate(e){
+  window.location.href = "/donation"
+}
+
 function add_videos() {
   var videos = document.getElementById("addVideos");
   videos.style.display = "block";
-  // var myvideos = document.getElementById("myVideos");
-  // myvideos.style.display = "none";
+  var myvideos = document.getElementById("myvideos");
+  myvideos.style.display = "none";
   // var assignments = document.getElementById("assignments");
   // assignments.style.display = "none";
   var vids = document.getElementById("videos");
@@ -151,8 +196,8 @@ function add_videos() {
 function show_assignments() {
   // var assignments = document.getElementById("assignments");
   // assignments.style.display = "block";
-  // var myvideos = document.getElementById("myVideos");
-  // myvideos.style.display = "none";
+  var myvideos = document.getElementById("myvideos");
+  myvideos.style.display = "none";
   var videos = document.getElementById("addVideos");
   videos.style.display = "none";
   var vids = document.getElementById("videos");
@@ -164,8 +209,8 @@ function show_assignments() {
 function show_videos() {
   // var assignments = document.getElementById("assignments");
   // assignments.style.display = "none";
-  // var myvideos = document.getElementById("myVideos");
-  // myvideos.style.display = "none"; 
+  var myvideos = document.getElementById("myvideos");
+  myvideos.style.display = "none"; 
 
   var videos = document.getElementById("addVideos");
   videos.style.display = "none";
@@ -177,8 +222,8 @@ function show_videos() {
 function show_myvideos() {
   // var assignments = document.getElementById("assignments");
   // assignments.style.display = "none";
-  var myvideos = document.getElementById("myVideos");
-  videos.style.display = "block";
+  var myvideos = document.getElementById("myvideos");
+  myvideos.style.display = "block";
 
   var videos = document.getElementById("addVideos");
   videos.style.display = "none";
@@ -191,8 +236,8 @@ function show_myvideos() {
 function show_profile() {
   // var assignments = document.getElementById("assignments");
   // assignments.style.display = "none";
-  // var myvideos = document.getElementById("myVideos");
-  // myvideos.style.display = "none";
+  var myvideos = document.getElementById("myvideos");
+  myvideos.style.display = "none";
   var videos = document.getElementById("addVideos");
   videos.style.display = "none";
   var vids = document.getElementById("videos");
@@ -200,3 +245,4 @@ function show_profile() {
   var profile = document.getElementById("profile");
   profile.style.display = "block";
 }
+
