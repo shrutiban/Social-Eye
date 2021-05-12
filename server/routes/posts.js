@@ -13,6 +13,7 @@ router.post("/",async(req,res)=>{
     console.log("inside post");
     const newPost=new Post(req.body);
     try{
+        console.log("inside try");
         const savedPost=await newPost.save();
         res.status(200).json(savedPost);
 

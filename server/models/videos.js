@@ -17,7 +17,7 @@ const videosSchema = mongoose.Schema({
 	},
 	postedBy: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'teacher'
+		ref: 'org'
 	},
 	vidComments: [{
 		student: {

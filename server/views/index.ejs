@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>NGO Portal</title>
+	<title>Social Eye</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -13,22 +13,20 @@
 <body>
 		<div class="header">
 			<div class="sides">
-				<img src="resources/logo.png" id="logo_image">
-				<h2 class="logoText">vidyanikethan</h2>
+				<!-- <img src="resources/logo.png" id="logo_image"> -->
+				<!-- <h2 class="logoText">vidyanikethan</h2> -->
 				<a href="#about" class="logo1">ABOUT US</a>
 				<a href="#donashun" class="logo2">DONATE</a>
-				<!-- <a href="#volunteer" class="logo3">VOLUNTEER</a> -->
-				<a class="logo3" href="/volunteer_registration">VOLUNTEER NOW</a>
-				<br/>
-
-				<a class="logo5" href="/management_registration">MANAGE NOW</a>
+				<!-- <a href="#individual" class="logo3">Individual</a> -->
+				<a class="logo3" href="/individual_registration">Individual Registration</a> 
+				<a class="logo5" href="/management_registration">MANAGE NOW</a> 
 				<a href="http://localhost:5050/login" class="logo4">LOG IN</a>
 					
 			</div>
 			<div class="sides"> <a href="#" class="menu">-</a></div>
 				<div class="info">
 					<h4><a href="#category"></a></h4>
-				  <h1 class="schoolName"><b>SRI VIDYANIKETHAN SCHOOL</b></h1>
+				  <h1 class="schoolName"><b>Social Eye</b></h1>
 				  <div class="meta" style="font-size: 1.8em;">
 						Integrated sustainable community development through community participation.
 					</div>
@@ -36,7 +34,7 @@
 		</div>
 				
 <div class="slideShowContainer" id="about">
-	<h1 id="slideText"><b>Why empowering children matters?</b></h1>	
+	<h1 id="slideText"><b>Why Should I Care?</b></h1>	
 	<div class="mySlides"><img class="slideImage" src="resources/Slide1.png"></div>
 	<div class="mySlides"><img class="slideImage" src="resources/Slide2.png"></div>
 	<div class="mySlides"><img class="slideImage" src="resources/Slide3.png"></div>
@@ -44,13 +42,13 @@
 	<div class="mySlides"><img class="slideImage" src="resources/Slide5.png"></div>
 </div>
 <!--</section>-->
-<div id="about_us">
+<!-- <div id="about_us">
 	<h1 id="about_us_text"><b>About Us</b></h1>
 	<div id="about_us_font">
 		Vidyanikethan is a not-for-profit organization founded in 1988 to improve the lives and livelihoods of people from the vulnerable, marginalized and under-developed sections of the society. Based in Bangalore, (India) Vidyanikethan's special focus is on development of children and women from the low income group families. Its interventions have impacted more than 12000 families. It has initiated about 600 Self-Help Groups in almost 10 divisional areas in two major states in South India - Karnataka and Tamil Nadu.
 	</div>
 	<img src='resources/class5.jpg' style="position: absolute; top: 240vh; left: 55vw; width: 40vw;">
-	</div>
+	</div> -->
 <div style="display: none">
 	<form method='post' action='https://securegw-stage.paytm.in/theia/processTransaction' name='f1'></form>
 </div>
@@ -66,7 +64,8 @@
 				  <span class="switch-button"></span>
 				</fieldset>
 			  </div>
-		<div class="donation-meter" name="showHideExample" ng-show="showHideTest">
+
+		<!-- <div class="donation-meter" name="showHideExample" ng-show="showHideTest">
 				<strong style="margin-left:-2vw;">Monthly Requirements</strong>
 				<strong class="goal" style="margin-left:-2vw;">₹35,000</strong>
 				<span class="glass">
@@ -79,7 +78,7 @@
 								<span></span>
 						</span>
 				</div>
-			</div>
+			</div> -->
             
 		<div class="donation-box" ng-show="showHideTest">
 			<div class="title">Monetary Donation Information</div>
@@ -101,11 +100,11 @@
 	<input type="radio" class="switch-input" name="view" value="One-Time" id="one-time" checked="">
 	<label for="one-time" class="switch-label switch-label-off">One-Time</label>
 	<input type="radio" class="switch-input" name="view" value="Monthly" id="monthly">
-	<label for="monthly" class="switch-label switch-label-on">Sponsor a Child</label>
+	<label for="monthly" class="switch-label switch-label-on">Sponsor a Oxygen Cylinder</label>
 	<span class="switch-selection"></span>
 	</div>
 	
-	<div class="checkboxes">
+	<!-- <div class="checkboxes">
 	<input type="checkbox" id="receipt" class="checkbox" />
 	<label for="receipt">Email Me A Receipt</label>
 	<br />
@@ -114,7 +113,7 @@
 	<br />
 	<input type="checkbox" id="list" class="checkbox" />
 	<label for="list">Add Me To Email List</label>
-	</div>
+	</div> -->
 	
 	<div class="confirm">
 	</div>
@@ -133,7 +132,7 @@
 				<li>Stationary</li>
 				<li>Toys</li>
 				<li>Toiletaries</li>
-				<div id="divider"></div>
+				<!-- <div id="divider"></div>
 				<div id="contact_us">
 						<strong>Location:</strong> <br>
 						Vidyanikethan <br>
@@ -146,11 +145,11 @@
 						
 						<strong>E-mail Us At:</strong><br>
 						vidyanik@gmail.com
-				</div>
+				</div> -->
 				<br><br><br><br><br><label>Enter your contact number for a call:</label> <br>
-				<div class="fields">
-					<input type="text" style="font-size: 1.5em; left:-1vw; top: 5vh; position:absolute;" placeholder="9036112332">
-				</div>
+				<!-- <div class="fields"> -->
+					<input type="text" style="font-size: 1.5em; left:-1vw; top: 5vh; position:relative;" placeholder="9036112332">
+				<!-- </div> -->
 			</div>	
 			
 	<div class="confirm">

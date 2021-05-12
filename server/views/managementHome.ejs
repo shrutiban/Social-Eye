@@ -17,7 +17,7 @@
                 <a href="javascript:show_students();" data-title="View Students">View Students</a>
             </li>
             <li>
-                <a href="javascript:show_teachers();" data-title="View Teachers">View Teachers</a>
+                <a href="javascript:show_orgs();" data-title="View Orgs">View Orgs</a>
             </li>
             <li>
                 <a href="javascript:show_schedule();" data-title="View Schedule">View Schedule</a>
@@ -25,6 +25,9 @@
 						<li>
 								<a href="javascript:show_donations();" data-title="View Donations">View Donations</a>
 						</li>
+            <li>
+              <a href="javascript:show_posts();" data-title="View Posts">View Posts</a>
+          </li>
             </ul>
         </nav>
     </header>
@@ -57,14 +60,14 @@
 
 
 
-        <article class="larg" style="display: none;" id="teachers">
+        <article class="larg" style="display: none;" id="orgs">
             <div id="detailsDiv2">
-            <h3>Teacher Details <span class="entypo-down-open"></span></h3>
+            <h3>Org Details <span class="entypo-down-open"></span></h3>
             </div>
-						<a href="javascript:add_teacher();" data-title="Add Teacher">Add Teacher</a>
+						<a href="javascript:add_org();" data-title="Add Org">Add Org</a>
 
 
-            <div id="div_addteacher" style="display:none">
+            <div id="div_addorg" style="display:none">
                   Name:<br>
                   <input type="text" name="firstname" id="t_fn" class="form__group"><br>
                   Email:<br>
@@ -87,9 +90,43 @@
                 </div>  
                 
 
-                  <input type="submit" value="Submit" class="btn" onclick="submit_teacher_add()">
+                  <input type="submit" value="Submit" class="btn" onclick="submit_org_add()">
                 </div>
         </article>
+
+        <article class="larg" style="display: none;" id="posts">
+          <div id="detailsDiv5">
+          <h3>Post Details <span class="entypo-down-open"></span></h3>
+          </div>
+          <!-- <a href="javascript:add_org();" data-title="Add Org">Add Org</a> -->
+
+
+          <!-- <div id="div_addorg" style="display:none">
+                Name:<br>
+                <input type="text" name="firstname" id="t_fn" class="form__group"><br>
+                Email:<br>
+                <input type="email" name="lastname" id="t_em" class="form__group"><br><br>
+                Username:<br>
+                <input type="text" name="username" id="t_un" class="form__group"><br>
+                Password:<br>
+                <input type="password" name="password" id="t_pw" class="form__group"><br>
+                 <input type="select multiple" name="students" id="s_stu"><br>
+                Students:<br>
+              <div class="select_menu">
+
+                <select multiple id="t_students" class="select_menu">
+                  
+                  <option value="anaskhan96" class="select__group">Anas Khan</option></br>
+                  <option value="grassknoted" class="select__group">Akash Nagaraj</option></br>
+                  <option value="ash" class="select__group">Ashik Povanna</option></br>
+                  <option value="sanju" class="select__group">A N Sanjith</option></br> 
+                </select>
+              </div>  
+              
+
+                <input type="submit" value="Submit" class="btn" onclick="submit_org_add()">
+              </div> -->
+      </article>
 
         <article class="larg" style="display: none;" id="schedule">
             <div id="detailsDiv">

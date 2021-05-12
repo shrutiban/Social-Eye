@@ -48,7 +48,7 @@ managementRouter.get('/details', (req, res) => {
 });
 
 /*
-	GET /management/users/student, /management/users/teacher
+	GET /management/users/student, /management/users/org
 	response: json { success (boolean), users { name, email, username } }
 */
 managementRouter.get('/users/:usertype', (req, res) => {
@@ -72,15 +72,36 @@ managementRouter.get('/users/:usertype', (req, res) => {
 		});
 	});
 });
-
+// managementRouter.get('/posts/:usertype', (req, res) => {
+// 	console.log(chalk.green('GET ' + chalk.blue('/management/posts')));
+// 	if (req.params.usertype == 'management') return res.json({
+// 		success: false
+// 	});
+// 	let Usertype = require('../models/' + req.params.usertype);
+// 	Usertype.find().exec((err, results) => {
+// 		let users = [];
+// 		for (let i = 0; i < results.length; i++) {
+// 			users.push({
+// 				userId:results[i].userId,
+// 				desription: results[i].desription,
+// 				img: results[i].img,
+// 				phone: results[i].contactInfo.phone  
+// 			});
+// 		}
+// 		res.json({
+// 			success: true,
+// 			users: users
+// 		});
+// 	});
+// });
 /*
-	POST /management/addUser/student, /management/addUser/teacher
-	request body: json { name, email, username, password, students {} (for teachers) }
+	POST /management/addUser/student, /management/addUser/org
+	request body: json { name, email, username, password, students {} (for orgs) }
 	response: json { success (boolean) }
 */
 managementRouter.post('/addUser/:usertype', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/management/addUser')));
-	if (req.params.usertype != "student" && req.params.usertype != "teacher") return res.json({
+	if (req.params.usertype != "student" && req.params.usertype != "org") return res.json({
 		success: false
 	});
 	let Usertype = require('../models/' + req.params.usertype);
@@ -90,7 +111,7 @@ managementRouter.post('/addUser/:usertype', (req, res) => {
 		username: req.body.username,
 		password: req.body.password
 	});
-	if (req.params.usertype == 'teacher' && req.body.students) {
+	if (req.params.usertype == 'org' && req.body.students) {
 		// req.body.students contain all the usernames
 		Student.find({
 			username: {
@@ -125,13 +146,13 @@ managementRouter.post('/addUser/:usertype', (req, res) => {
 });
 
 /*
-	POST /management/deleteUser/student, /management/deleteUser/teacher
+	POST /management/deleteUser/student, /management/deleteUser/org
 	request body: json { username }
 	response: json { success (boolean) }
 */
 managementRouter.post('/deleteUser/:usertype', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/management/deleteUser')));
-	if (req.params.usertype != "student" && req.params.usertype != "teacher") return res.json({
+	if (req.params.usertype != "student" && req.params.usertype != "org") return res.json({
 		success: false
 	});
 	let Usertype = require('../models/' + req.params.usertype);
@@ -150,17 +171,17 @@ managementRouter.post('/deleteUser/:usertype', (req, res) => {
 
 /*
 	GET /management/schedules
-	response: json { name, workDescription, class, days, subject, volunteersOpted (array of volunteer usernames) }
+	response: json { name, workDescription, class, days, subject, IndividualsOpted (array of Individual usernames) }
 */
 managementRouter.get('/schedules', (req, res) => {
 	console.log(chalk.green('GET ' + chalk.blue('/management/schedules')));
-	Schedule.find().populate('volunteersOpted').exec((err, schedules) => {
+	Schedule.find().populate('IndividualsOpted').exec((err, schedules) => {
 		if (err) throw err;
 		let finalSchedules = [];
 		schedules.forEach((schedule) => {
 			let sched = schedule.toObject();
-			for (let i = 0; i < sched.volunteersOpted.length; i++)
-				sched.volunteersOpted[i] = sched.volunteersOpted[i].username;
+			for (let i = 0; i < sched.IndividualsOpted.length; i++)
+				sched.IndividualsOpted[i] = sched.IndividualsOpted[i].username;
 			finalSchedules.push(sched);
 		});
 		res.json(finalSchedules);
