@@ -1,0 +1,8 @@
+---
+- name: Pull docker image
+  hosts: production
+  tasks:
+    - name: Pull image of working project from dockerhub
+      docker_image:
+        name: shrutiban/social-app
+        source: pull
