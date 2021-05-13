@@ -61,6 +61,7 @@ personRouter.get('/videos', async(req, res) => {
 		let videos = [];
 		for (let i = 0; i < video.length; i++) {
 					videos.push({
+						author: video[i].postedByName,
 						name: video[i].name,
 						link: video[i].link
 					});
@@ -214,7 +215,8 @@ personRouter.post('/addVideo', (req, res) => {
 		let video = new Videos({
 			name: req.body.name,
 			link: req.body.link,
-			postedBy: person
+			postedByID: person._id,
+			postedByName: person.name
 		});
 		video.save((err, result) => {
 			if (err) {

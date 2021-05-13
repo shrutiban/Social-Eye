@@ -54,12 +54,12 @@ $(document).ready( function() {
         a.setAttribute('href', '/org/video/' + encodeURIComponent(vids[i].link));
         a.innerHTML = 'Open this video with discussions';
         div.appendChild(a);
-        // let delBtn = document.createElement("button");
-        // delBtn.id = "delVideo";
-        // delBtn.className = "delbtn";
-        // delBtn.innerHTML="DELETE VIDEO";
-        // delBtn.addEventListener('click',delete_video,false);
-        // div.appendChild(delBtn);
+        let donateBtn = document.createElement("button");
+        donateBtn.id = "donateBtn";
+        donateBtn.className = "donateBtn";
+        donateBtn.innerHTML="DONATE";
+        donateBtn.addEventListener('click',click_donate,false);
+        div.appendChild(donateBtn);
         videosArticle.appendChild(div);
       }
     }
@@ -185,6 +185,9 @@ function delete_video(e)
   });
 }
 
+function click_donate(e){
+  window.location.href = "/donation"
+}
 
 function add_videos() {
   var assignments = document.getElementById("addVideos");

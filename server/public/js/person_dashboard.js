@@ -38,7 +38,8 @@ $(document).ready( function() {
       for(let i = 0; i < vids.length; i++){
         let div = document.createElement("div");
         let h3 = document.createElement("h3");
-        h3.innerHTML = vids[i].name + "<span class='entypo-down-open'></span>";
+        h3.innerHTML = "Requested-By : " + vids[i].author + "<br>";
+        h3.innerHTML += vids[i].name + "<span class='entypo-down-open'></span><br>";
         div.appendChild(h3);
         let iframe = document.createElement('iframe');
         iframe.setAttribute('width', '640');

@@ -60,7 +60,7 @@ orgRouter.get('/videos', async(req, res) => {
 		let videos = [];
 		for (let i = 0; i < video.length; i++) {
 
-				let author = video[i].postedBy;
+				// let author = video[i].postedBy;
 				// console.log(author);
 					videos.push({
 						author: video[i].postedByName,
