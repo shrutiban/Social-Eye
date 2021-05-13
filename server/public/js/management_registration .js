@@ -80,25 +80,6 @@ var questions = [
             inputLabel.innerHTML = questions[position].question
             inputField.type = questions[position].type || 'text'
             
-            // if(position==2) {
-            //     inputField.setAttribute("list", "grades");
-                
-            //     prompt_div.style.display = "flex";
-            //     prompt_div.innerHTML = "Please select the grades you would like to teach from the dropdown list. The management will allot you an appropriate slot."
-    
-            // }
-            // else if(position==3) {
-            //     inputField.setAttribute("list", "subjects");
-    
-            //     prompt_div.style.display = "flex";
-            //     prompt_div.innerHTML = "Please select your preference for the subject you would like to teach from the dropdown list.";
-            // }
-            // else if(position==4) {
-            //     inputField.setAttribute("list", "slots");
-    
-            //     prompt_div.style.display = "flex";
-            //     prompt_div.innerHTML = "Please select your preferred days to teach."
-            // }
             inputField.value = questions[position].answer || ''
             inputField.focus()
     
@@ -113,7 +94,7 @@ var questions = [
         function validate() {
     
             var validateCore = function() {
-            //console.log("1");      
+ 
             if(position == first_password_position) {
                 console.log("3 entered");
                 first_password = inputField.value
@@ -124,7 +105,6 @@ var questions = [
                         if(!(inputField.value == first_password)) {
                             console.log("2 check: ", inputField.value, first_password)
                             console.log("Checking");
-                            //confirm("Passwords don't match!");
                             return null;
                         }
                     }
@@ -133,35 +113,19 @@ var questions = [
     
             if (!questions[position].validate) questions[position].validate = validateCore
     
-            // check if the pattern matches
             if (!questions[position].validate()) wrong(inputField.focus.bind(inputField))
             else ok(function() {
-    
-                // execute the custom end function or the default value set
                 if (questions[position].done) 
                     questions[position].done()
                 else {
-                    //console.log("Position:",position);
                     questions[position].answer = inputField.value
-                    // if(position == 3) {
-                    //     console.log("3 entered");
-                    //     first_password = questions[position].answer
-                    // }
-                    // if(position == 4) {
-                    //     console.log("4 entered");
-                    //     console.log(questions[position].answer," ",first_password);
-                    //     if(!(questions[position].answer == first_password)) {
-                    //         console.log("Checking");
-                    //         alert("Passwords don't match! Database Entry not created!");
-                    //     }
-                    // }
+
                 }
                 ++position
-    
-                // if there is a new question, hide current and load next
+    t
                 if (questions[position]) hideCurrent(putQuestion)
                 else hideCurrent(function() {
-                    // remove the box if there is no next question
+
                     register.className = 'close'
                     progress.style.width = '100%'
     

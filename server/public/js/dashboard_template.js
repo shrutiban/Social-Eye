@@ -18,14 +18,6 @@ $(document).ready( function() {
   });
 });
 
-// function show_assignments() {
-//   var assignments = document.getElementById("assignments");
-//   assignments.style.display = "block";
-//   var vids = document.getElementById("videos");
-//   vids.style.display = "none";
-//   var profile = document.getElementById("profile");
-//   profile.style.display = "block";
-// }
 
 function show_videos() {
   var assignments = document.getElementById("assignments");

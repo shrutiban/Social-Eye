@@ -117,7 +117,6 @@ delVideoBtn.addEventListener('click',delete_video,false);
 
 
 
-// CHANGE THESE FUNCTIONS TO SUIT THE org DASHBOARD 
 function submit_video()
 {
   fetch('/org/addVideo',{
@@ -132,7 +131,7 @@ function submit_video()
     console.log(res);
     if(res.success)
     {
-      //Update the Video on the UI
+  
       let videosArticle = document.getElementById('videos');
       console.log(videosArticle);
       let div = document.createElement("div");
@@ -213,8 +212,6 @@ function show_videos() {
 }
 
 function show_myvideos() {
-  // var assignments = document.getElementById("assignments");
-  // assignments.style.display = "none";
   var myvideo = document.getElementById("myvideos");
   myvideo.style.display = "block";
 

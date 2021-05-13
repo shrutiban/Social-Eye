@@ -124,7 +124,7 @@ function submit_video()
     console.log(res);
     if(res.success)
     {
-      //Update the Video on the UI
+  
       let videosArticle = document.getElementById('videos');
       console.log(videosArticle);
       let div = document.createElement("div");
@@ -186,8 +186,6 @@ function add_videos() {
   videos.style.display = "block";
   var myvideos = document.getElementById("myvideos");
   myvideos.style.display = "none";
-  // var assignments = document.getElementById("assignments");
-  // assignments.style.display = "none";
   var vids = document.getElementById("videos");
   vids.style.display = "none";
   var profile = document.getElementById("profile");
@@ -195,8 +193,6 @@ function add_videos() {
 }
 
 function show_assignments() {
-  // var assignments = document.getElementById("assignments");
-  // assignments.style.display = "block";
   var myvideos = document.getElementById("myvideos");
   myvideos.style.display = "none";
   var videos = document.getElementById("addVideos");
@@ -208,8 +204,6 @@ function show_assignments() {
 }
 
 function show_videos() {
-  // var assignments = document.getElementById("assignments");
-  // assignments.style.display = "none";
   var myvideos = document.getElementById("myvideos");
   myvideos.style.display = "none"; 
 
@@ -221,8 +215,6 @@ function show_videos() {
   profile.style.display = "none";
 }
 function show_myvideos() {
-  // var assignments = document.getElementById("assignments");
-  // assignments.style.display = "none";
   var myvideos = document.getElementById("myvideos");
   myvideos.style.display = "block";
 
@@ -235,8 +227,6 @@ function show_myvideos() {
 }
 
 function show_profile() {
-  // var assignments = document.getElementById("assignments");
-  // assignments.style.display = "none";
   var myvideos = document.getElementById("myvideos");
   myvideos.style.display = "none";
   var videos = document.getElementById("addVideos");

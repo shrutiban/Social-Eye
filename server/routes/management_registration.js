@@ -5,22 +5,13 @@ const Management = require('../models/management');
 let managementRegRouter = express.Router();
 let auth = require('../middleware/auth');
 const chalk = require('chalk');
-// const management = require('../models/management');
 
-/*
-	GET /volunteer_registration
-	response: view
-*/
 managementRegRouter.get('/', (req, res) => {
 	console.log(chalk.green('GET ' + chalk.blue('/management_registration')));
 	res.render('management_registration.ejs');
 });
 
-/*
-	POST /volunteer_registration
-	request body: json { name, email, username, password, class, subject, days }
-	response: set-cookie and json { success (boolean) }
-*/
+
 managementRegRouter.post('/', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/management_registration')));
 	let management = new Management({

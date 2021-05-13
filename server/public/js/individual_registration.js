@@ -1,9 +1,5 @@
 var questions = [
     {question:"Your name?"},
-    // {question:"What's your last name?"},
-    // {question:"Class preference?"},
-    // {question:"Subject preference?"},
-    // {question:"Preferred days?"},
     {question:"What's your email?", type: "text", pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/},
     {question:"Create your username", type: "text"},
     {question:"Create your password", type: "password"},
@@ -20,9 +16,6 @@ var questions = [
             credentials: 'include',
             body: JSON.stringify({
                 name: questions[0].answer,
-                // class: questions[2].answer,
-                // subject: questions[3].answer,
-                // days: questions[4].answer,
                 email: questions[1].answer,
                 username: questions[2].answer,
                 password: questions[3].answer

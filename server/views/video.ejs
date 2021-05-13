@@ -414,16 +414,7 @@
   <div class="foot"></div>
 </div>
 <iframe id="videoframe" width="640" height="480" src="<%= video.link %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<!-- <div id="comments">
-	<div>
-	<% for(var i = 0; i < video.comments.length; i++) { %>
-		<p><strong><%= video.comments[i].username %> </strong>: <%= video.comments[i].text %></p>
-		<% if (video.username == video.comments[i].username) { %>
-			<button onclick="deleteComment('<%= video.comments[i].text %>')">Delete</button>
-		<% } %>	
-		<% } %>
-	</div>
-</div> -->
+
 <br>
 <br>
 <br>
@@ -510,11 +501,7 @@ $(".bar").click(function() {
 			else {
 				let div = event.target.parentElement;
 				div.style.display = "none";
-				// figure out this @grassknoted
-				/*
-				let div = event.target.parentElement;
-				div.parentElement.removeChild(div);
-				*/
+
 			}
 		});
 	}

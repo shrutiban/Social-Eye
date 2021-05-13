@@ -1,22 +1,17 @@
 {
-  "name": "ngo-project",
+  "name": "social-eye",
   "version": "1.0.0",
-  "description": "website for the ngo vidyaniketan",
+  "description": "Social-Eye to bring change in Society",
   "main": "server/index.js",
   "scripts": {
     "test": "mocha --exit",
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anaskhan96/ngo-project.git"
+    "url": "https://github.com/shrutiban/NGO-Project"
   },
-  "author": "Anas Khan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/anaskhan96/ngo-project/issues"
-  },
-  "homepage": "https://github.com/anaskhan96/ngo-project#readme",
+  "author": "Shanu Kumar, Shruti Bansal",
   "dependencies": {
     "chalk": "^2.4.1",
     "cookie-parser": "^1.4.3",

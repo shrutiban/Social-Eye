@@ -260,15 +260,15 @@ function show_donations() {
 }
 
 
-function add_user() {		// show add person form
+function add_user() {		
 	persondiv=document.getElementById("div_addperson");
 	persondiv.style.display="block";
-	// alert("potray person add_user");
+
 }
 
 
-function add_user_post(name_i, email_i, username_i, password_i){			// add person function
-    //do same as add_schedule and collect input using form
+function add_user_post(name_i, email_i, username_i, password_i){
+ 
     console.log(name_i+"___"+email_i+"___"+username_i+"___"+password_i)
     fetch('/management/addUser/person',{
     method : "POST",
@@ -282,10 +282,8 @@ function add_user_post(name_i, email_i, username_i, password_i){			// add person
     headers: {"Content-Type" : "application/json;charset=utf-8"}
   }).then((result) => result.json()).then((res) => {
     console.log(res);
-    // displayvoid_persons();
     fetch_persons();
-    show_persons();  // ajax call to reload page not working
-    // window.location="http://localhost:8080/management"
+    show_persons();  
     });
   swal("Added!", "The person has been added to the database", "success");
 }
@@ -303,16 +301,13 @@ function submit_person_add() {
 
 }
 
-function add_org(){		// show add org form
-    //do same as add_schedule and collect input using form
+function add_org(){		
 	orgdiv=document.getElementById("div_addorg");
 	orgdiv.style.display="block";
-	// alert("potray person add_user");
 }
 
 
-function add_org_post(name_i, email_i, username_i, password_i, persons_i){			// add org function
-    //do same as add_schedule and collect input using form
+function add_org_post(name_i, email_i, username_i, password_i, persons_i){			
     console.log(name_i+"___"+email_i+"___"+username_i+"___"+password_i)
     fetch('/management/addUser/org',{
     method : "POST",
@@ -327,10 +322,9 @@ function add_org_post(name_i, email_i, username_i, password_i, persons_i){			// 
     headers: {"Content-Type" : "application/json;charset=utf-8"}
   }).then((result) => result.json()).then((res) => {
     console.log(res);
-    // displayvoid_persons();
+    
     fetch_orgs();
-    show_orgs();  // ajax call to reload page not working
-    // window.location="http://localhost:8080/management"
+    show_orgs();  
     });
   swal("Added!", "The org has been added to the database", "success");
 }
@@ -352,11 +346,9 @@ function submit_org_add() {
 
 }
 
-function add_schedule(){		// show add schedule form
-    //do same as add_schedule and collect input using form
+function add_schedule(){		
 	schedulediv=document.getElementById("div_addschedule");
 	schedulediv.style.display="block";
-	// alert("potray person add_user");
 }
 
 
@@ -375,7 +367,7 @@ function add_schedule_post(name_i, workDescription_i, class_i, subject_i, days_i
   }).then((result) => result.json()).then((res) => {
     console.log(res);
     fetch_schedules();
-    show_schedule();  // ajax call to reload page not working
+    show_schedule();  
     });
   swal("Added!", "The schedule has been added to the database", "success");
 }

@@ -8,15 +8,11 @@ let Videos = require('../models/videos');
 let Person = require('../models/person');
 const chalk = require('chalk');
 
-// authentication middleware
 orgRouter.use((req, res, next) => {
 	auth.authenticate(req, res, next, 'org');
 });
 
-/*
-	GET /org
-	response: view with variables { user (username) }
-*/
+
 orgRouter.get('/', (req, res) => {
 	console.log(chalk.green('GET ' + chalk.blue('/org')));
 	res.render('org_dashboard.ejs', {
@@ -24,10 +20,7 @@ orgRouter.get('/', (req, res) => {
 	});
 });
 
-/*
-	GET /org/details
-	response: json { success (boolean), name, email, username }
-*/
+
 orgRouter.get('/details', (req, res) => {
 	console.log(chalk.green('GET ' + chalk.blue('/org/details')));
 	Org.findOne({
@@ -46,10 +39,7 @@ orgRouter.get('/details', (req, res) => {
 	});
 });
 
-/*
-	GET /org/videos
-	response: json { success (boolean), videos { name, link } }
-*/
+
 let videos = [];
 
 
@@ -59,9 +49,6 @@ orgRouter.get('/videos', async(req, res) => {
         const video = await Videos.find();
 		let videos = [];
 		for (let i = 0; i < video.length; i++) {
-
-				// let author = video[i].postedBy;
-				// console.log(author);
 					videos.push({
 						author: video[i].postedByName,
 						name: video[i].name,
@@ -72,7 +59,6 @@ orgRouter.get('/videos', async(req, res) => {
 							success: true,
 							videos: videos
 						});
-						// console.log(videos);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -95,42 +81,14 @@ orgRouter.get('/myvideos', async(req, res) => {
 							success: true,
 							videos: videos
 						});
-						// console.log(videos);
+						
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
-	// Videos.find().populate({
-		
-	// 	$match: {
-	// 		name: req.user.name
-			
-	// 	}
-		
-	// }).exec((err, videos) => {
-		
-	// 	if (err) throw err;
-	// 	if (videos == null) return res.json({
-	// 		success: false
-	// 	});
-	// 	let vids = [];
-	// 	for (let i = 0; i < videos.length; i++) {
-	// 		vids.push({
-	// 			name: videos[i].name,
-	// 			link: videos[i].link
-	// 		});
-			
-	// 	}
-	// 	res.json({
-	// 		success: true,
-	// 		videos: vids
-	// 	});
-	// });
+	
 });
 
-/*
-	GET /org/video/<linkOfVideo>
-	response: view with variables { video { name, link, comments } }
-*/
+
 orgRouter.get('/video/:link', (req, res) => {
 	console.log(chalk.green('GET ' + chalk.blue('/org/video')));
 	let link = decodeURIComponent(req.params.link);
@@ -158,11 +116,7 @@ orgRouter.get('/video/:link', (req, res) => {
 	});
 });
 
-/*
-	POST /org/addVideo
-	request body: json { name, link }
-	response: json { success (boolean), name, link }
-*/
+
 orgRouter.post('/addVideo', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/org/addVideo')));
 	Org.findOne({
@@ -185,17 +139,7 @@ orgRouter.post('/addVideo', (req, res) => {
 					success: false
 				});
 			}
-			// for (let i = 0; i < org.persons.length; i++) {
-			// 	Person.findOneAndUpdate({
-			// 		username: org.persons[i].username
-			// 	}, {
-			// 		$push: {
-			// 			videos: result
-			// 		}
-			// 	}, (err, updatedPerson) => {
-			// 		if (err) throw err;
-			// 	});
-			// }
+
 		});
 		res.json({
 			success: true,
@@ -204,68 +148,9 @@ orgRouter.post('/addVideo', (req, res) => {
 		});
 	});
 });
-// orgRouter.post('/addComment/:link', (req, res) => {
-// 	console.log(chalk.cyan('POST ' + chalk.blue('/org/addComment')));
-// 	let link = decodeURIComponent(req.params.link);
-// 	Org.findOne({
-// 		username: req.user.username
-// 	}, (err, org) => {
-// 		if (err || !org) return res.json({
-// 			success: false
-// 		});
-// 		let comment = {
-// 			org: org,
-// 			text: req.body.text
-// 		};
-// 		Videos.findOneAndUpdate({
-// 			link: link
-// 		}, {
-// 			$push: {
-// 				vidComments: comment
-// 			}
-// 		}, (err, updatedResult) => {
-// 			if (err) return res.json({
-// 				success: false
-// 			});
-// 			res.json({
-// 				success: true,
-// 				username: req.user.username,
-// 				text: req.body.text
-// 			});
-// 		});
-// 	});
-// });
 
-// orgRouter.post('/deleteComment/:link', (req, res) => {
-// 	console.log(chalk.cyan('POST ' + chalk.blue('/org/deleteComment')));
-// 	let link = decodeURIComponent(req.params.link);
-// 	Videos.findOne({
-// 		link: link
-// 	}).populate('vidComments.org').exec((err, video) => {
-// 		for (let i = 0; i < video.vidComments.length; i++) {
-// 			if (video.vidComments[i].person && video.vidComments[i].person.username == req.user.username && video.vidComments[i].text == req.body.text) {
-// 				video.vidComments.splice(i, 1);
-// 				break;
-// 			}
-// 		}
-// 		video.save((err, result) => {
-// 			if (err) {
-// 				console.log(chalk.red(err));
-// 				res.json({
-// 					success: false
-// 				});
-// 			} else res.json({
-// 				success: true
-// 			});
-// 		});
-// 	});
-// });
 
-/*
-	POST /org/deleteVideo
-	request body: json { link }
-	response: json { success (boolean) }
-*/
+
 orgRouter.post('/deleteVideo', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/org/deleteVideo')));
 	Videos.deleteOne({

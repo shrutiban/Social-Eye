@@ -6,20 +6,13 @@ let individualRegRouter = express.Router();
 let auth = require('../middleware/auth');
 const chalk = require('chalk');
 
-/*
-	GET /individual_registration
-	response: view
-*/
+
 individualRegRouter.get('/', (req, res) => {
 	console.log(chalk.green('GET ' + chalk.blue('/individual_registration')));
 	res.render('individual_registration.ejs');
 });
 
-/*
-	POST /individual_registration
-	request body: json { name, email, username, password, class, subject, days }
-	response: set-cookie and json { success (boolean) }
-*/
+
 individualRegRouter.post('/', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/individual_registration')));
 	let individual = new Individual({

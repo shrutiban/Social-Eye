@@ -7,20 +7,12 @@ let checksum = require('../middleware/checksum/checksum');
 let Donations = require('../models/donations');
 const chalk = require('chalk');
 
-/*
-	GET /donate
-	response: view
-*/
+
 donateRouter.get('/', (req, res) => {
 	console.log(chalk.green('GET ' + chalk.blue('/donate')));
 	res.render('donate.ejs');
 });
 
-/*
-	POST /donate
-	request body: json { name, email, mobile, amount (if monetary), comments (if non-monetary) }
-	response: view with variables { success (boolean) }
-*/
 donateRouter.post('/', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/donate')));
 	if (!req.body.isMonetary) {
@@ -96,23 +88,14 @@ function initiatePayment(customer, callback) {
 	});
 }
 
-/*
-	POST /donate/payment, callback function from PayTM's website
-	request body: transaction details in a json
-	response: same as POST /donate
-*/
+
 donateRouter.post('/payment', (req, res) => {
 	console.log(chalk.cyan('POST ' + chalk.blue('/donate/payment')));
 	Donations.findOne({
 		"transactionDetails.ORDERID": req.body.ORDERID
 	}, (err, donation) => {
 		if (err) throw err;
-		/*if (donation.transactionDetails.CHECKSUMHASH != req.body.CHECKSUMHASH) {
-			console.log(donation);
-			return res.render('postDonation.ejs', {
-				success: false
-			});
-		}*/
+		
 		donation.transactionDetails.TXNID = req.body.TXNID;
 		donation.transactionDetails.STATUS = req.body.STATUS;
 		donation.paymentMode = req.body.PAYMENTMODE;
