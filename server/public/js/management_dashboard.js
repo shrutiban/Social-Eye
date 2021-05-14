@@ -18,12 +18,10 @@ $(document).ready( function() {
   });
 
 	fetch_persons();
-	show_persons();
-
 	fetch_orgs();
 
-	fetch_schedules();
-	fetch_posts();
+	show_persons();
+	show_orgs();
 
 
     fetch('/management/donations').then((result) => result.json()).then((res) => {

@@ -6,8 +6,12 @@ let individualRegRouter = express.Router();
 let auth = require('../middleware/auth');
 const chalk = require('chalk');
 
+const log=require('log-to-file')
+
 
 individualRegRouter.get('/', (req, res) => {
+	log("person dashboard");
+
 	console.log(chalk.green('GET ' + chalk.blue('/individual_registration')));
 	res.render('individual_registration.ejs');
 });
@@ -23,7 +27,9 @@ individualRegRouter.post('/', (req, res) => {
 	});
 	individual.save((err, result) => {
 		if (err) {
+
 			let errorMsg = 'Registration failed! Please contact management';
+			log('Registration failed!');
 			if (err.code == 11000 && err.errmsg.includes('username')) errorMsg = 'This username has been already taken';
 			else if (err.code = 11000 && err.errmsg.includes('email')) errorMsg = 'This email has been already taken';
 			res.json({
@@ -31,6 +37,7 @@ individualRegRouter.post('/', (req, res) => {
 				errorMsg: errorMsg
 			});
 		} else {
+			log("Added individual");
 			console.log(chalk.yellow('Added individual: ' + result.username));
 			let token = auth.generateToken(result.username, 'individual');
 			res.cookie('ngotok', token, {

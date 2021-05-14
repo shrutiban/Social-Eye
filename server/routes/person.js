@@ -6,6 +6,7 @@ let personRouter = express.Router();
 let Person = require('../models/person');
 let Videos = require('../models/videos');
 const chalk = require('chalk');
+const log=require('log-to-file')
 
 
 personRouter.use((req, res, next) => {
@@ -14,6 +15,7 @@ personRouter.use((req, res, next) => {
 
 personRouter.get('/', (req, res) => {
 	console.log(chalk.green('GET ' + chalk.blue('/person')));
+	log("person dashboard");
 	res.render('person_dashboard.ejs', {
 		user: req.user
 	});
@@ -46,6 +48,7 @@ personRouter.get('/videos', async(req, res) => {
 	try {
         const video = await Videos.find();
 		let videos = [];
+		log("posts fetched successfully");
 		for (let i = 0; i < video.length; i++) {
 					videos.push({
 						author: video[i].postedByName,
@@ -58,6 +61,7 @@ personRouter.get('/videos', async(req, res) => {
 							videos: videos
 						});
     } catch (error) {
+		log("can not fetch posts");
         res.status(404).json({ message: error.message });
     }
 });
@@ -165,11 +169,13 @@ personRouter.post('/addVideo', (req, res) => {
 		});
 		video.save((err, result) => {
 			if (err) {
+				log("person's post not added");
 				console.log(chalk.red(err));
 				return res.json({
 					success: false
 				});
 			}
+			log("person's post added");
 		});
 		res.json({
 			success: true,

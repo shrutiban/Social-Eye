@@ -5,8 +5,11 @@ const Management = require('../models/management');
 let managementRegRouter = express.Router();
 let auth = require('../middleware/auth');
 const chalk = require('chalk');
+const log=require('log-to-file')
+
 
 managementRegRouter.get('/', (req, res) => {
+	log("management registration reached");
 	console.log(chalk.green('GET ' + chalk.blue('/management_registration')));
 	res.render('management_registration.ejs');
 });
@@ -22,6 +25,7 @@ managementRegRouter.post('/', (req, res) => {
 	});
 	management.save((err, result) => {
 		if (err) {
+			log('Registration failed!');
 			let errorMsg = 'Registration failed! Please contact management';
 			if (err.code == 11000 && err.errmsg.includes('username')) errorMsg = 'This username has been already taken';
 			else if (err.code = 11000 && err.errmsg.includes('email')) errorMsg = 'This email has been already taken';
@@ -30,6 +34,7 @@ managementRegRouter.post('/', (req, res) => {
 				errorMsg: errorMsg
 			});
 		} else {
+			log('Added management');
 			console.log(chalk.yellow('Added management: ' + result.username));
 			let token = auth.generateToken(result.username, 'management');
 			res.cookie('ngotok', token, {

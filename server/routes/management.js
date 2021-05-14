@@ -8,8 +8,10 @@ const chalk = require('chalk');
 let Donations = require('../models/donations');
 let Person = require('../models/person');
 
+const log=require('log-to-file')
 
 managementRouter.use((req, res, next) => {
+	log("management");
 	auth.authenticate(req, res, next, 'management');
 });
 
@@ -26,11 +28,19 @@ managementRouter.get('/details', (req, res) => {
 	Management.findOne({
 		username: req.user.username
 	}, (err, management) => {
+		
 		if (err) throw err;
-		if (management == null) return res.json({
-			success: false
-		});
+		if (management == null){
+			log("management details not retrieve"); 
+			return res.json({
+				success: false
+			});
+		} 
+		else{
+			log("management details retrieve"); 
+		}
 		res.json({
+			
 			success: true,
 			name: management.name,
 			email: management.email,
@@ -88,6 +98,7 @@ managementRouter.post('/addUser/:usertype', (req, res) => {
 					errorMsg: err.toString()
 				});
 				console.log(chalk.yellow('Added ' + req.params.usertype + ': ' + result.username));
+				log("user added"); 
 				res.json({
 					success: true
 				});
@@ -120,6 +131,7 @@ managementRouter.post('/deleteUser/:usertype', (req, res) => {
 			success: false,
 			errorMsg: err.toString()
 		});
+		else log("User deleted"); 
 		res.json({
 			success: true
 		});

@@ -7,9 +7,12 @@ let Org = require('../models/org');
 let Videos = require('../models/videos');
 let Person = require('../models/person');
 const chalk = require('chalk');
+const log=require('log-to-file')
+
 
 orgRouter.use((req, res, next) => {
 	auth.authenticate(req, res, next, 'org');
+	
 });
 
 
@@ -18,6 +21,7 @@ orgRouter.get('/', (req, res) => {
 	res.render('org_dashboard.ejs', {
 		user: req.user
 	});
+	log("org authenticate");
 });
 
 
@@ -48,6 +52,7 @@ orgRouter.get('/videos', async(req, res) => {
 	try {
         const video = await Videos.find();
 		let videos = [];
+		log("posts fetched successfully ");
 		for (let i = 0; i < video.length; i++) {
 					videos.push({
 						author: video[i].postedByName,
@@ -60,6 +65,7 @@ orgRouter.get('/videos', async(req, res) => {
 							videos: videos
 						});
     } catch (error) {
+		log("can not get posts");
         res.status(404).json({ message: error.message });
     }
 });
@@ -134,11 +140,13 @@ orgRouter.post('/addVideo', (req, res) => {
 		});
 		video.save((err, result) => {
 			if (err) {
+				log("can not add posts");
 				console.log(chalk.red(err));
 				return res.json({
 					success: false
 				});
 			}
+			else log("posts added");
 
 		});
 		res.json({

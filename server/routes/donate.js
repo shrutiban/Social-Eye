@@ -6,11 +6,20 @@ let donateRouter = express.Router();
 let checksum = require('../middleware/checksum/checksum');
 let Donations = require('../models/donations');
 const chalk = require('chalk');
+// let log4js=require("log4js");
+
+ const log=require('log-to-file')
+ // Using __filename as the first argument is recommended.
+ // This will set the `file` field in the output to the relative path of the current file.
+
+ 
 
 
 donateRouter.get('/', (req, res) => {
+
 	console.log(chalk.green('GET ' + chalk.blue('/donate')));
 	res.render('donate.ejs');
+	log("donate reached");
 });
 
 donateRouter.post('/', (req, res) => {
@@ -114,7 +123,7 @@ donateRouter.post('/payment', (req, res) => {
 });
 
 donateRouter.get('/received', (req, res) => {
-	console.log(chalk.green('GET ' + chalk.blue('/donate/received')));
+	// console.log(chalk.green('GET ' + chalk.blue('/donate/received')));
 	Donations.find({
 		"transactionDetails.STATUS": "TXN_SUCCESS"
 	}, (err, donations) => {

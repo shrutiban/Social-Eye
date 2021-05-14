@@ -41,8 +41,8 @@ var questions = [
             }
         })
         .catch((err) => console.log(err));
-    }
-    
+    }  
+
     ;(function(questions, onComplete) {
     
         var tTime = 100
@@ -122,7 +122,7 @@ var questions = [
 
                 }
                 ++position
-    t
+                
                 if (questions[position]) hideCurrent(putQuestion)
                 else hideCurrent(function() {
 
